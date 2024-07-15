@@ -212,6 +212,8 @@ body {
     border-radius: 6px;
     padding: 41px 30px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  justify-content: center;
+  align-items: center;
 }
 
 .login_form h3 {
