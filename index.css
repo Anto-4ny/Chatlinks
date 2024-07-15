@@ -204,16 +204,6 @@ body {
     font-family: "Montserrat", sans-serif;
 }
 
-body {
-    width: 100%;
-    min-height: 100vh;
-    padding: 0 10px;
-    display: flex;
-    background: #626cd6;
-    justify-content: center;
-    align-items: center;
-}
-
 /* Login form styling */
 .login_form {
     width: 100%;
