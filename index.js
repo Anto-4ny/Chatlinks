@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
-import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+import { getAuth, signInWithPopup, GoogleAuthProvider, OAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -27,6 +27,26 @@ const googleProvider = new GoogleAuthProvider();
   button.addEventListener('click', (e) => {
     e.preventDefault();
     signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        // Handle success
+        console.log(result.user);
+      })
+      .catch((error) => {
+        // Handle errors
+        console.error(error);
+      });
+  });
+});
+
+// Apple login and signup
+const appleLoginButton = document.getElementById('apple-login');
+const appleSignupButton = document.getElementById('apple-signup');
+const appleProvider = new OAuthProvider('apple.com');
+
+[appleLoginButton, appleSignupButton].forEach(button => {
+  button.addEventListener('click', (e) => {
+    e.preventDefault();
+    signInWithPopup(auth, appleProvider)
       .then((result) => {
         // Handle success
         console.log(result.user);
@@ -91,6 +111,7 @@ showLoginLink.addEventListener('click', (e) => {
   loginFormContainer.style.display = 'block';
   signupFormContainer.style.display = 'none';
 });
+
                                                 
 
            
