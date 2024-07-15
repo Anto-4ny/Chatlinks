@@ -1,3 +1,57 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBEj4ktySbzLa8imFNDgchhpddAjwCEHRA",
+  authDomain: "chatlinks-bcc1b.firebaseapp.com",
+  projectId: "chatlinks-bcc1b",
+  storageBucket: "chatlinks-bcc1b.appspot.com",
+  messagingSenderId: "424383172981",
+  appId: "1:424383172981:web:eaf35d0e99fd605f72433c",
+  measurementId: "G-Y2QYK39WYG"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const auth = getAuth(app);
+
+// Google login
+const googleLoginButton = document.getElementById('google-login');
+googleLoginButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  const provider = new GoogleAuthProvider();
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      // Handle success
+      console.log(result.user);
+    })
+    .catch((error) => {
+      // Handle errors
+      console.error(error);
+    });
+});
+
+// Email/Password login
+const loginForm = document.getElementById('login-form');
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const email = loginForm['email'].value;
+  const password = loginForm['password'].value;
+
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Handle success
+      console.log(userCredential.user);
+    })
+    .catch((error) => {
+      // Handle errors
+      console.error(error);
+    });
+});
+           
 const textarea = document 
     .querySelector('#post-desc'); 
 const postBtn = document 
