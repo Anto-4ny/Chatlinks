@@ -353,6 +353,77 @@ form button:hover {
     background: #4954d0;
   }
 
+} 
+  
+.user { 
+    background-image: 
+url(https://static.xx.fbcdn.net/rsrc.php/v3/yf/r/_OLjeOMXK05.png); 
+} 
+  
+.specific-user { 
+    background-image:  
+url(https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/xZG_j_BgiWu.png); 
+} 
+  
+.lock { 
+    background-image:  
+url(https://static.xx.fbcdn.net/rsrc.php/v3/yw/r/fxRwLKfcAmo.png); 
+} 
+  
+.gear { 
+    background-image:  
+url(https://static.xx.fbcdn.net/rsrc.php/v3/yB/r/417zloHnnzB.png); 
+} 
+  
+.star { 
+    background-image:  
+url(https://static.xx.fbcdn.net/rsrc.php/v3/yX/r/QryT_9DQQgy.png); 
+} 
+  
+  
+.audience-option-icon i { 
+    background-color: #e4e6eb; 
+    border-radius: 50%; 
+} 
+  
+.fa-earth-asia { 
+    padding: 1rem; 
+} 
+  
+.post-audience-section .fa-user-group { 
+    padding: 1rem 0.75rem; 
+} 
+  
+.fa-user { 
+    padding: 1rem 1.1rem; 
+} 
+  
+.fa-lock { 
+    padding: 1rem 1.1rem; 
+} 
+  
+.fa-gear { 
+    padding: 1rem; 
+} 
+  
+.fa-star { 
+    padding: 1rem 0.9rem; 
+} 
+  
+.audience-option-text { 
+    font-weight: bold; 
+    margin-bottom: 0.15rem; 
+} 
+  
+.audience-option-radio { 
+    transform: scale(1.5); 
+} 
+  
+.audience-option.active { 
+    background-color: hsl(210, 12%, 94%); 
+}
+
+
 /* footer styles start */
 .footer {
   display: flex;
