@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
-import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -18,28 +18,32 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
-// Google login
+// Google login and signup
 const googleLoginButton = document.getElementById('google-login');
-googleLoginButton.addEventListener('click', (e) => {
-  e.preventDefault();
-  const provider = new GoogleAuthProvider();
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      // Handle success
-      console.log(result.user);
-    })
-    .catch((error) => {
-      // Handle errors
-      console.error(error);
-    });
+const googleSignupButton = document.getElementById('google-signup');
+const googleProvider = new GoogleAuthProvider();
+
+[googleLoginButton, googleSignupButton].forEach(button => {
+  button.addEventListener('click', (e) => {
+    e.preventDefault();
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        // Handle success
+        console.log(result.user);
+      })
+      .catch((error) => {
+        // Handle errors
+        console.error(error);
+      });
+  });
 });
 
 // Email/Password login
 const loginForm = document.getElementById('login-form');
 loginForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  const email = loginForm['email'].value;
-  const password = loginForm['password'].value;
+  const email = loginForm['login-email'].value;
+  const password = loginForm['login-password'].value;
 
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -51,6 +55,44 @@ loginForm.addEventListener('submit', (e) => {
       console.error(error);
     });
 });
+
+// Email/Password signup
+const signupForm = document.getElementById('signup-form');
+signupForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const email = signupForm['signup-email'].value;
+  const password = signupForm['signup-password'].value;
+
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Handle success
+      console.log(userCredential.user);
+    })
+    .catch((error) => {
+      // Handle errors
+      console.error(error);
+    });
+});
+
+// Toggle between login and signup forms
+const showSignupLink = document.getElementById('show-signup');
+const showLoginLink = document.getElementById('show-login');
+const loginFormContainer = document.querySelector('.login_form');
+const signupFormContainer = document.querySelector('.signup_form');
+
+showSignupLink.addEventListener('click', (e) => {
+  e.preventDefault();
+  loginFormContainer.style.display = 'none';
+  signupFormContainer.style.display = 'block';
+});
+
+showLoginLink.addEventListener('click', (e) => {
+  e.preventDefault();
+  loginFormContainer.style.display = 'block';
+  signupFormContainer.style.display = 'none';
+});
+                                                
+
            
 const textarea = document 
     .querySelector('#post-desc'); 
