@@ -1,0 +1,289 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+}
+
+.header {
+  background-color: #ffffff;
+  padding: 20px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.header .icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 20px;
+}
+
+.header .icons i {
+  color: gray;
+  width: 20px;
+}
+
+.search-bar {
+  width: 60%;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+}
+
+.container {
+  /* max-width: 40vw;s */
+  margin: auto;
+}
+
+/* stories or status */
+
+.slider {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 10px;
+  background-color: white;
+  cursor: grab;
+}
+
+.slider:active {
+  cursor: grabbing;
+}
+
+.story {
+  text-align: center;
+  width: 80px;
+}
+
+.image {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 5px;
+  border: 2px solid #007bff;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.add-story {
+  background-color: #e0e0e0;
+  border: 2px dashed #007bff;
+}
+
+.plus-icon {
+  position: absolute;
+  font-size: 24px;
+  color: #007bff;
+  background-color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.name {
+  font-size: 14px;
+  color: #333;
+}
+
+/* end of status */
+
+/* post section starts */
+
+.post-container {
+  background-color: white;
+  width: 100%;
+  margin: 20px 0;
+  overflow: hidden;
+}
+.post-header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+.profile-pic {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+}
+.post-info {
+  flex-grow: 1;
+}
+.post-info h4 {
+  margin: 0;
+  font-size: 14px;
+}
+.post-info span {
+  font-size: 12px;
+  color: gray;
+}
+.post-info i {
+  font-size: 12px;
+  color: gray;
+  margin-left: 5px;
+}
+.post-content p {
+  padding: 10px;
+}
+.post-content img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+.post-content p {
+  margin: 10px 0 0 0;
+}
+.post-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid #e0e0e0;
+}
+.post-analysis {
+  border: none;
+}
+.post-actions div,
+.analysis div {
+  display: flex;
+  align-items: center;
+}
+.post-actions i {
+  margin-right: 5px;
+  color: gray;
+}
+.post-actions span {
+  color: gray;
+  font-size: 14px;
+}
+
+.post-actions .action {
+  display: flex;
+  flex-direction: column;
+}
+/* post section end */
+
+.analysis,
+.analysis .numbers {
+  display: flex;
+  justify-content: space-between;
+  gap: 3px;
+  padding: 5px 2px;
+}
+.numbers div,
+.analysis div {
+  color: gray;
+  margin-right: 5px;
+}
+
+/* footer styles start */
+.footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+  color: #ddd;
+}
+
+.footer-item i {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.footer-item span {
+  font-size: 12px;
+}
+
+/* Change icon color on hover */
+.footer-item:hover i,
+.footer-item:hover span {
+  color: white;
+}
+
+/* footer styles end */
+
+.icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-right: 18px;
+  font-size: 20px;
+  color: gray;
+}
+
+/* post btn */
+.post-btn {
+}
+
+/* chatWithMeButton */
+.Button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0px 0px 16px 6px rgba(0, 0, 0, 0.33);
+  background-color: hsl(207, 100%, 50%);
+  border-radius: 50%;
+  padding: 4px;
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  right: 10px;
+  bottom: 90px;
+  z-index: 100 !important;
+}
+/* end of chatWithMeButton */
+
+/* end of post btn */
+
+@media (min-width: 640px) {
+  .search-bar {
+    width: 50vw;
+  }
+  .container {
+    max-width: 100vw;
+  }
+}
+
+@media (min-width: 1024px) {
+  main {
+    background-color: #eeee;
+    padding: 2px 0;
+    margin-top: 2px;
+    max-width: 70vw;
+    margin: auto;
+    display: flex;
+  }
+  .header {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+}
