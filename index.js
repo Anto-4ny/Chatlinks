@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
-import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, OAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+import { getAuth, signInWithPopup, GoogleAuthProvider, OAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -18,22 +18,6 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
-// UI elements
-const authContainer = document.getElementById('auth-container');
-const content = document.getElementById('content');
-const logoutButton = document.getElementById('logout-button');
-
-// Check auth state
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    authContainer.style.display = 'none';
-    content.style.display = 'block';
-  } else {
-    authContainer.style.display = 'block';
-    content.style.display = 'none';
-  }
-});
-
 // Google login and signup
 const googleLoginButton = document.getElementById('google-login');
 const googleSignupButton = document.getElementById('google-signup');
@@ -46,6 +30,7 @@ const googleProvider = new GoogleAuthProvider();
       .then((result) => {
         // Handle success
         console.log(result.user);
+        window.location.href = "index.html"; // Redirect to a protected page
       })
       .catch((error) => {
         // Handle errors
@@ -66,6 +51,7 @@ const appleProvider = new OAuthProvider('apple.com');
       .then((result) => {
         // Handle success
         console.log(result.user);
+        window.location.href = "index.html"; // Redirect to a protected page
       })
       .catch((error) => {
         // Handle errors
@@ -85,6 +71,7 @@ loginForm.addEventListener('submit', (e) => {
     .then((userCredential) => {
       // Handle success
       console.log(userCredential.user);
+      window.location.href = "index.html"; // Redirect to a protected page
     })
     .catch((error) => {
       // Handle errors
@@ -103,6 +90,7 @@ signupForm.addEventListener('submit', (e) => {
     .then((userCredential) => {
       // Handle success
       console.log(userCredential.user);
+      window.location.href = "index.html"; // Redirect to a protected page
     })
     .catch((error) => {
       // Handle errors
@@ -110,22 +98,11 @@ signupForm.addEventListener('submit', (e) => {
     });
 });
 
-// Logout
-logoutButton.addEventListener('click', () => {
-  signOut(auth).then(() => {
-    // Sign-out successful.
-    console.log('User signed out.');
-  }).catch((error) => {
-    // An error happened.
-    console.error(error);
-  });
-});
-
 // Toggle between login and signup forms
 const showSignupLink = document.getElementById('show-signup');
 const showLoginLink = document.getElementById('show-login');
-const loginFormContainer = document.getElementById('login-form-container');
-const signupFormContainer = document.getElementById('signup-form-container');
+const loginFormContainer = document.querySelector('.login_form');
+const signupFormContainer = document.querySelector('.signup_form');
 
 showSignupLink.addEventListener('click', (e) => {
   e.preventDefault();
@@ -138,7 +115,7 @@ showLoginLink.addEventListener('click', (e) => {
   loginFormContainer.style.display = 'block';
   signupFormContainer.style.display = 'none';
 });
-      
+           
 
            
 const textarea = document 
