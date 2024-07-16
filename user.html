@@ -10,71 +10,90 @@
 </head>
 <body>
   <div class="form_container">
-    <div class="login_form">
-      <form id="login-form">
-        <h3>Log in with</h3>
-        <div class="login_option">
-          <div class="option">
-            <a href="#" id="google-login">
-              <img src="assets/google.png" alt="Google">
-              <span>Google</span>
-            </a>
-          </div>
-          <div class="option">
-            <a href="#" id="apple-login">
-              <img src="assets/apple.png" alt="Apple">
-              <span>Apple</span>
-            </a>
-          </div>
+  <div class="login_form">
+    <!-- Login form container -->
+    <form id="login-form" action="#">
+      <h3>Log in with</h3>
+      <div class="login_option">
+        <!-- Google button -->
+        <div class="option">
+          <button id="google-login">
+            <img src="assets/google.png" alt="Google" />
+            <span>Google</span>
+          </button>
         </div>
-        <p class="separator"><span>or</span></p>
-        <div class="input_box">
-          <label for="login-email">Email</label>
-          <input type="email" id="login-email" placeholder="Enter email address" required>
+        <!-- Apple button -->
+        <div class="option">
+          <button id="apple-login">
+            <img src="assets/apple.png" alt="Apple" />
+            <span>Apple</span>
+          </button>
         </div>
-        <div class="input_box">
-          <div class="password_title">
-            <label for="login-password">Password</label>
-            <a href="#">Forgot Password?</a>
-          </div>
-          <input type="password" id="login-password" placeholder="Enter your password" required>
+      </div>
+      <!-- Login option separator -->
+      <p class="separator">
+        <span>or</span>
+      </p>
+      <!-- Email input box -->
+      <div class="input_box">
+        <label for="email">Email</label>
+        <input type="email" id="login-email" placeholder="Enter email address" required />
+      </div>
+      <!-- Password input box -->
+      <div class="input_box">
+        <div class="password_title">
+          <label for="password">Password</label>
+          <a href="#" id="forgot-password">Forgot Password?</a>
         </div>
-        <button type="submit">Log In</button>
-        <p class="sign_up">Don't have an account? <a href="#" id="show-signup">Sign up</a></p>
-      </form>
-    </div>
-    <div class="signup_form" style="display: none;">
-      <form id="signup-form">
-        <h3>Sign up with</h3>
-        <div class="login_option">
-          <div class="option">
-            <a href="#" id="google-signup">
-              <img src="assets/google.png" alt="Google">
-              <span>Google</span>
-            </a>
-          </div>
-          <div class="option">
-            <a href="#" id="apple-signup">
-              <img src="assets/apple.png" alt="Apple">
-              <span>Apple</span>
-            </a>
-          </div>
-        </div>
-        <p class="separator"><span>or</span></p>
-        <div class="input_box">
-          <label for="signup-email">Email</label>
-          <input type="email" id="signup-email" placeholder="Enter email address" required>
-        </div>
-        <div class="input_box">
-          <label for="signup-password">Password</label>
-          <input type="password" id="signup-password" placeholder="Enter your password" required>
-        </div>
-        <button type="submit">Sign Up</button>
-        <p class="sign_up">Already have an account? <a href="user.html" id="show-login">Log in</a></p>
-      </form>
-      <button id="logout-button">Log Out</button>
-    </div>
+        <input type="password" id="login-password" placeholder="Enter your password" required />
+      </div>
+      <!-- Login button -->
+      <button type="submit">Log In</button>
+      <p class="sign_up">Don't have an account? <a href="#" id="show-signup">Sign up</a></p>
+    </form>
   </div>
+
+  <div class="signup_form" style="display: none;">
+    <div class="form_container">
+    <!-- Signup form container -->
+    <form id="signup-form" action="#">
+      <h3>Sign up with</h3>
+      <div class="login_option">
+        <!-- Google button -->
+        <div class="option">
+          <button id="google-signup">
+            <img src="assets/google.png" alt="Google" />
+            <span>Google</span>
+          </button>
+        </div>
+        <!-- Apple button -->
+        <div class="option">
+          <button id="apple-signup">
+            <img src="assets/apple.png" alt="Apple" />
+            <span>Apple</span>
+          </button>
+        </div>
+      </div>
+      <!-- Signup option separator -->
+      <p class="separator">
+        <span>or</span>
+      </p>
+      <!-- Email input box -->
+      <div class="input_box">
+        <label for="signup-email">Email</label>
+        <input type="email" id="signup-email" placeholder="Enter email address" required />
+      </div>
+      <!-- Password input box -->
+      <div class="input_box">
+        <label for="signup-password">Password</label>
+        <input type="password" id="signup-password" placeholder="Enter your password" required />
+      </div>
+      <!-- Signup button -->
+      <button type="submit">Sign Up</button>
+      <p class="sign_in">Already have an account? <a href="#" id="show-login">Log in</a></p>
+    </form>
+       </div>
+          
   <script type="module">
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
     const auth = getAuth();
