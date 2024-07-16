@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login and Signup Form for chatlinks</title>
+  <title>Login Form for chatlinks</title>
   <link rel="stylesheet" href="index.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <script type="module" src="index.js"></script>
 </head>
 <body>
-  <div class="form_container">
   <div class="login_form">
+    <div class="form_container">
     <!-- Login form container -->
     <form id="login-form" action="#">
       <h3>Log in with</h3>
@@ -36,13 +35,13 @@
       </p>
       <!-- Email input box -->
       <div class="input_box">
-        <label for="email">Email</label>
+        <label for="login-email">Email</label>
         <input type="email" id="login-email" placeholder="Enter email address" required />
       </div>
       <!-- Password input box -->
       <div class="input_box">
         <div class="password_title">
-          <label for="password">Password</label>
+          <label for="login-password">Password</label>
           <a href="#" id="forgot-password">Forgot Password?</a>
         </div>
         <input type="password" id="login-password" placeholder="Enter your password" required />
@@ -92,30 +91,44 @@
       <button type="submit">Sign Up</button>
       <p class="sign_in">Already have an account? <a href="#" id="show-login">Log in</a></p>
     </form>
-       </div>
-          
-  <script type="module">
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
-    const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        if (!user.emailVerified) {
-          alert('Please verify your email to access this page.');
-          window.location.href = "user.html";
-        }
-      } else {
-        window.location.href = "user.html";
-      }
-    });
+  </div>
 
-    const logoutButton = document.getElementById('logout-button');
-    logoutButton.addEventListener('click', () => {
-      signOut(auth).then(() => {
-        window.location.href = "user.html";
-      }).catch((error) => {
-        console.error(error);
-      });
-    });
-  </script>
+  <div class="password-reset-form" style="display: none;">
+    <!-- Password reset form container -->
+    <form id="password-reset-form" action="#">
+      <h3>Forgot Password</h3>
+      <p>Enter your email address to reset your password.</p>
+      <!-- Email input box -->
+      <div class="input_box">
+        <label for="reset-email">Email</label>
+        <input type="email" id="reset-email" placeholder="Enter your email address" required />
+      </div>
+      <!-- Submit button -->
+      <button type="submit">Submit</button>
+      <p class="back-to-login">Remember your password? <a href="#" id="back-to-login">Log in</a></p>
+    </form>
+  </div>
+
+  <div class="set-new-password-form" style="display: none;">
+    <!-- Set new password form container -->
+    <form id="set-new-password-form" action="#">
+      <h3>Set New Password</h3>
+      <!-- Password input box -->
+      <div class="input_box">
+        <label for="new-password">New Password</label>
+        <input type="password" id="new-password" placeholder="Enter your new password" required />
+      </div>
+      <!-- Confirm Password input box -->
+      <div class="input_box">
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" placeholder="Confirm your new password" required />
+      </div>
+      <!-- Set password button -->
+      <button type="submit">Set Password</button>
+    </form>
+  </div>
+
+  <script type="module" src="index.js"></script>
 </body>
-</html>
+    </html>
+  
