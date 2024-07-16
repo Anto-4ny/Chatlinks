@@ -196,6 +196,7 @@ body {
 /* Google Fonts Link */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+
 /* Resetting default styling and setting font-family */
 * {
     margin: 0;
@@ -212,26 +213,27 @@ body {
     border-radius: 6px;
     padding: 41px 30px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto; /* Center the form horizontally */
 }
 
 .login_form h3 {
     font-size: 20px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 /* Google & Apple button styling */
-
 .login_form .login_option {
     display: flex;
-    width: 100%;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .login_form .login_option .option {
-    width: calc(100% / 2 - 12px);
+    width: calc(50% - 6px); /* Adjusted width with margin */
 }
 
 .login_form .login_option .option a {
@@ -239,11 +241,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 12px;
     background: #F8F8FB;
     border: 1px solid #DADAF2;
     border-radius: 5px;
-    margin: 34px 0 24px 0;
     text-decoration: none;
     color: #171645;
     font-weight: 500;
@@ -257,24 +257,27 @@ body {
 
 .login_form .login_option .option a img {
     max-width: 25px;
+    margin-right: 10px; /* Added margin for spacing */
 }
 
 .login_form p {
     text-align: center;
     font-weight: 500;
-}
-
-.login_form .separator {
-    position: relative;
-    margin-bottom: 24px;
+    margin-bottom: 20px; /* Increased margin for spacing */
 }
 
 /* Login option separator styling */
+.login_form .separator {
+    position: relative;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
 .login_form .separator span {
     background: #fff;
-    z-index: 1;
     padding: 0 10px;
     position: relative;
+    z-index: 1;
 }
 
 .login_form .separator::after {
@@ -303,8 +306,8 @@ form .input_box input {
     outline: none;
     background: #F8F8FB;
     font-size: 17px;
-    padding: 0px 20px;
-    margin-bottom: 25px;
+    padding: 0 20px; /* Adjusted padding for input fields */
+    margin-bottom: 20px; /* Increased margin for spacing */
     transition: 0.2s ease;
 }
 
@@ -315,21 +318,20 @@ form .input_box input:focus {
 form .input_box .password_title {
     display: flex;
     justify-content: space-between;
-    text-align: center;
-}
-
-form .input_box {
-    position: relative;
+    align-items: center;
+    margin-bottom: 20px; /* Increased margin for spacing */
 }
 
 a {
     text-decoration: none;
     color: #626cd6;
     font-weight: 500;
+    transition: color 0.2s ease; /* Added transition for smoother hover effect */
 }
 
 a:hover {
     text-decoration: underline;
+    color: #4954d0; /* Adjusted hover color */
 }
 
 /* Login button styling */
@@ -345,15 +347,15 @@ form button {
     font-weight: 500;
     text-transform: uppercase;
     cursor: pointer;
-    margin-bottom: 28px;
-    transition: 0.3s ease;
+    margin-bottom: 20px; /* Increased margin for spacing */
+    transition: background 0.3s ease; /* Added transition for smoother hover effect */
 }
 
 form button:hover {
-    background: #4954d0;
+    background: #4954d0; /* Darker background on hover */
   }
 
-} 
+
   
 .user { 
     background-image: 
