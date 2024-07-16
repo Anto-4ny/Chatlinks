@@ -3,14 +3,12 @@
   
 <head> 
     <meta charset="UTF-8"> 
-    <meta name="viewport" content= 
-"width=device-width, initial-scale=1.0"> 
-    <link rel="stylesheet" href= 
-"./style.css"> 
-    <script type="module" src= 
-"https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"> 
+    <meta name="viewport" content= "width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="./style.css"> 
+    <script type="module" src= "https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"> 
    </script> 
-    <title>Facebook Post Box Clone</title> 
+    <script type="module" src="auth.js"></script>
+    <title>Chatlinks Post Box</title> 
 </head> 
   
 <body> 
@@ -192,5 +190,17 @@
             </section> 
         </div> 
     </main> 
+  <script type="module">
+    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+    const auth = getAuth();
+    const logoutButton = document.getElementById('logout-button');
+    logoutButton.addEventListener('click', () => {
+      signOut(auth).then(() => {
+        window.location.href = "user.html";
+      }).catch((error) => {
+        console.error(error);
+      });
+    });
+  </script>
     <script src="./script.js"></script> 
                               </body>
