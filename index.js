@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
-import { getAuth, signInWithPopup, GoogleAuthProvider, OAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+import { getAuth, signInWithPopup, GoogleAuthProvider, OAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, confirmPasswordReset } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -33,7 +33,7 @@ googleProvider.setCustomParameters({
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         if (result.user.emailVerified) {
-          window.location.href = "user.html"; // Redirect to a protected page
+          window.location.href = "page1.html"; // Redirect to a protected page
         } else {
           sendEmailVerification(result.user)
             .then(() => {
@@ -62,7 +62,7 @@ appleProvider.setCustomParameters({
     signInWithPopup(auth, appleProvider)
       .then((result) => {
         if (result.user.emailVerified) {
-          window.location.href = "user.html"; // Redirect to a protected page
+          window.location.href = "page1.html"; // Redirect to a protected page
         } else {
           sendEmailVerification(result.user)
             .then(() => {
@@ -86,7 +86,7 @@ loginForm.addEventListener('submit', (e) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       if (userCredential.user.emailVerified) {
-        window.location.href = "user.html"; // Redirect to a protected page
+        window.location.href = "page1.html"; // Redirect to a protected page
       } else {
         alert('Please verify your email before logging in.');
       }
@@ -118,20 +118,55 @@ signupForm.addEventListener('submit', (e) => {
     });
 });
 
-// Password reset
+// Password reset form
 const forgotPasswordLink = document.getElementById('forgot-password');
+const passwordResetForm = document.getElementById('password-reset-form');
+const resetEmailInput = document.getElementById('reset-email');
+const setNewPasswordForm = document.getElementById('set-new-password-form');
+const newPasswordInput = document.getElementById('new-password');
+const confirmPasswordInput = document.getElementById('confirm-password');
+
 forgotPasswordLink.addEventListener('click', (e) => {
   e.preventDefault();
-  const email = document.getElementById('login-email').value;
+  document.querySelector('.login_form').style.display = 'none';
+  document.querySelector('.signup_form').style.display = 'none';
+  document.querySelector('.password-reset-form').style.display = 'block';
+});
 
-  if (!email) {
-    alert('Please enter your email address to reset your password.');
-    return;
-  }
+passwordResetForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const email = resetEmailInput.value;
 
   sendPasswordResetEmail(auth, email)
     .then(() => {
       alert('Password reset email sent. Please check your inbox.');
+      document.querySelector('.password-reset-form').style.display = 'none';
+      document.querySelector('.login_form').style.display = 'block';
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+});
+
+// Set new password form
+setNewPasswordForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const newPassword = newPasswordInput.value;
+  const confirmPassword = confirmPasswordInput.value;
+
+  if (newPassword !== confirmPassword) {
+    alert("Passwords do not match.");
+    return;
+  }
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const oobCode = urlParams.get('oobCode');
+
+  confirmPasswordReset(auth, oobCode, newPassword)
+    .then(() => {
+      alert('Password reset successful. You can now log in with your new password.');
+      document.querySelector('.set-new-password-form').style.display = 'none';
+      document.querySelector('.login_form').style.display = 'block';
     })
     .catch((error) => {
       console.error(error);
@@ -141,8 +176,11 @@ forgotPasswordLink.addEventListener('click', (e) => {
 // Toggle between login and signup forms
 const showSignupLink = document.getElementById('show-signup');
 const showLoginLink = document.getElementById('show-login');
+const backToLoginLink = document.getElementById('back-to-login');
 const loginFormContainer = document.querySelector('.login_form');
 const signupFormContainer = document.querySelector('.signup_form');
+const passwordResetFormContainer = document.querySelector('.password-reset-form');
+const setNewPasswordFormContainer = document.querySelector('.set-new-password-form');
 
 showSignupLink.addEventListener('click', (e) => {
   e.preventDefault();
@@ -155,6 +193,14 @@ showLoginLink.addEventListener('click', (e) => {
   loginFormContainer.style.display = 'block';
   signupFormContainer.style.display = 'none';
 });
+
+backToLoginLink.addEventListener('click', (e) => {
+  e.preventDefault();
+  passwordResetFormContainer.style.display = 'none';
+  setNewPasswordFormContainer.style.display = 'none';
+  loginFormContainer.style.display = 'block';
+});
+          
   
           
            
