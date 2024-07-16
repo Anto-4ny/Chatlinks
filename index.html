@@ -5,6 +5,7 @@
     <title>Chatlinks</title>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="module" src="auth.js"></script>
   </head>
   <body>
     <div class="header">
@@ -175,7 +176,18 @@
       </p>
     </div>
     <!-- footer ends here -->
-
+<script type="module">
+    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+    const auth = getAuth();
+    const logoutButton = document.getElementById('logout-button');
+    logoutButton.addEventListener('click', () => {
+      signOut(auth).then(() => {
+        window.location.href = "user.html";
+      }).catch((error) => {
+        console.error(error);
+      });
+    });
+</script>
     <script src="script.js"></script>
   
 
