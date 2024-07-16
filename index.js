@@ -18,7 +18,6 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
-
 // Google login and signup
 const googleLoginButton = document.getElementById('google-login');
 const googleSignupButton = document.getElementById('google-signup');
@@ -120,7 +119,7 @@ signupForm.addEventListener('submit', (e) => {
 });
 
 // Password reset
-const forgotPasswordLink = document.querySelector('.password_title a');
+const forgotPasswordLink = document.getElementById('forgot-password');
 forgotPasswordLink.addEventListener('click', (e) => {
   e.preventDefault();
   const email = document.getElementById('login-email').value;
@@ -156,6 +155,7 @@ showLoginLink.addEventListener('click', (e) => {
   loginFormContainer.style.display = 'block';
   signupFormContainer.style.display = 'none';
 });
+  
           
            
 const textarea = document 
