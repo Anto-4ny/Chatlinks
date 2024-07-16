@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
-import { getAuth, signInWithPopup, GoogleAuthProvider, OAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+import { getAuth, signInWithPopup, signInWithRedirect, GoogleAuthProvider, OAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -23,14 +23,18 @@ const googleLoginButton = document.getElementById('google-login');
 const googleSignupButton = document.getElementById('google-signup');
 const googleProvider = new GoogleAuthProvider();
 
+googleProvider.setCustomParameters({
+  prompt: 'select_account'
+});
+
 [googleLoginButton, googleSignupButton].forEach(button => {
   button.addEventListener('click', (e) => {
     e.preventDefault();
-    signInWithPopup(auth, googleProvider)
+    signInWithRedirect(auth, googleProvider)
       .then((result) => {
         // Handle success
         console.log(result.user);
-        window.location.href = "index.html"; // Redirect to a protected page
+        window.location.href = "user.html"; // Redirect to a protected page
       })
       .catch((error) => {
         // Handle errors
@@ -44,14 +48,18 @@ const appleLoginButton = document.getElementById('apple-login');
 const appleSignupButton = document.getElementById('apple-signup');
 const appleProvider = new OAuthProvider('apple.com');
 
+appleProvider.setCustomParameters({
+  prompt: 'select_account'
+});
+
 [appleLoginButton, appleSignupButton].forEach(button => {
   button.addEventListener('click', (e) => {
     e.preventDefault();
-    signInWithPopup(auth, appleProvider)
+    signInWithRedirect(auth, appleProvider)
       .then((result) => {
         // Handle success
         console.log(result.user);
-        window.location.href = "index.html"; // Redirect to a protected page
+        window.location.href = "user.html"; // Redirect to a protected page
       })
       .catch((error) => {
         // Handle errors
@@ -71,7 +79,7 @@ loginForm.addEventListener('submit', (e) => {
     .then((userCredential) => {
       // Handle success
       console.log(userCredential.user);
-      window.location.href = "index.html"; // Redirect to a protected page
+      window.location.href = "user.html"; // Redirect to a protected page
     })
     .catch((error) => {
       // Handle errors
@@ -90,7 +98,7 @@ signupForm.addEventListener('submit', (e) => {
     .then((userCredential) => {
       // Handle success
       console.log(userCredential.user);
-      window.location.href = "index.html"; // Redirect to a protected page
+      window.location.href = "user.html"; // Redirect to a protected page
     })
     .catch((error) => {
       // Handle errors
@@ -115,6 +123,7 @@ showLoginLink.addEventListener('click', (e) => {
   loginFormContainer.style.display = 'block';
   signupFormContainer.style.display = 'none';
 });
+          
            
 
            
