@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
-import { getAuth, signInWithPopup, signInWithRedirect, GoogleAuthProvider, OAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+import { getAuth, signInWithPopup, GoogleAuthProvider, OAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -18,6 +18,7 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
+
 // Google login and signup
 const googleLoginButton = document.getElementById('google-login');
 const googleSignupButton = document.getElementById('google-signup');
@@ -30,14 +31,18 @@ googleProvider.setCustomParameters({
 [googleLoginButton, googleSignupButton].forEach(button => {
   button.addEventListener('click', (e) => {
     e.preventDefault();
-    signInWithRedirect(auth, googleProvider)
+    signInWithPopup(auth, googleProvider)
       .then((result) => {
-        // Handle success
-        console.log(result.user);
-        window.location.href = "user.html"; // Redirect to a protected page
+        if (result.user.emailVerified) {
+          window.location.href = "user.html"; // Redirect to a protected page
+        } else {
+          sendEmailVerification(result.user)
+            .then(() => {
+              alert('Verification email sent. Please check your inbox.');
+            });
+        }
       })
       .catch((error) => {
-        // Handle errors
         console.error(error);
       });
   });
@@ -55,14 +60,18 @@ appleProvider.setCustomParameters({
 [appleLoginButton, appleSignupButton].forEach(button => {
   button.addEventListener('click', (e) => {
     e.preventDefault();
-    signInWithRedirect(auth, appleProvider)
+    signInWithPopup(auth, appleProvider)
       .then((result) => {
-        // Handle success
-        console.log(result.user);
-        window.location.href = "user.html"; // Redirect to a protected page
+        if (result.user.emailVerified) {
+          window.location.href = "user.html"; // Redirect to a protected page
+        } else {
+          sendEmailVerification(result.user)
+            .then(() => {
+              alert('Verification email sent. Please check your inbox.');
+            });
+        }
       })
       .catch((error) => {
-        // Handle errors
         console.error(error);
       });
   });
@@ -77,12 +86,13 @@ loginForm.addEventListener('submit', (e) => {
 
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // Handle success
-      console.log(userCredential.user);
-      window.location.href = "user.html"; // Redirect to a protected page
+      if (userCredential.user.emailVerified) {
+        window.location.href = "user.html"; // Redirect to a protected page
+      } else {
+        alert('Please verify your email before logging in.');
+      }
     })
     .catch((error) => {
-      // Handle errors
       console.error(error);
     });
 });
@@ -96,12 +106,35 @@ signupForm.addEventListener('submit', (e) => {
 
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // Handle success
-      console.log(userCredential.user);
-      window.location.href = "user.html"; // Redirect to a protected page
+      sendEmailVerification(userCredential.user)
+        .then(() => {
+          alert('Verification email sent. Please check your inbox.');
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     })
     .catch((error) => {
-      // Handle errors
+      console.error(error);
+    });
+});
+
+// Password reset
+const forgotPasswordLink = document.querySelector('.password_title a');
+forgotPasswordLink.addEventListener('click', (e) => {
+  e.preventDefault();
+  const email = document.getElementById('login-email').value;
+
+  if (!email) {
+    alert('Please enter your email address to reset your password.');
+    return;
+  }
+
+  sendPasswordResetEmail(auth, email)
+    .then(() => {
+      alert('Password reset email sent. Please check your inbox.');
+    })
+    .catch((error) => {
       console.error(error);
     });
 });
@@ -124,8 +157,6 @@ showLoginLink.addEventListener('click', (e) => {
   signupFormContainer.style.display = 'none';
 });
           
-           
-
            
 const textarea = document 
     .querySelector('#post-desc'); 
