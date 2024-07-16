@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
-import { getAuth, signInWithPopup, GoogleAuthProvider, OAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, OAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -17,6 +17,22 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
+
+// UI elements
+const authContainer = document.getElementById('auth-container');
+const content = document.getElementById('content');
+const logoutButton = document.getElementById('logout-button');
+
+// Check auth state
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    authContainer.style.display = 'none';
+    content.style.display = 'block';
+  } else {
+    authContainer.style.display = 'block';
+    content.style.display = 'none';
+  }
+});
 
 // Google login and signup
 const googleLoginButton = document.getElementById('google-login');
@@ -94,11 +110,22 @@ signupForm.addEventListener('submit', (e) => {
     });
 });
 
+// Logout
+logoutButton.addEventListener('click', () => {
+  signOut(auth).then(() => {
+    // Sign-out successful.
+    console.log('User signed out.');
+  }).catch((error) => {
+    // An error happened.
+    console.error(error);
+  });
+});
+
 // Toggle between login and signup forms
 const showSignupLink = document.getElementById('show-signup');
 const showLoginLink = document.getElementById('show-login');
-const loginFormContainer = document.querySelector('.login_form');
-const signupFormContainer = document.querySelector('.signup_form');
+const loginFormContainer = document.getElementById('login-form-container');
+const signupFormContainer = document.getElementById('signup-form-container');
 
 showSignupLink.addEventListener('click', (e) => {
   e.preventDefault();
@@ -111,8 +138,7 @@ showLoginLink.addEventListener('click', (e) => {
   loginFormContainer.style.display = 'block';
   signupFormContainer.style.display = 'none';
 });
-
-                                                
+      
 
            
 const textarea = document 
