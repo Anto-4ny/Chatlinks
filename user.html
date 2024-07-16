@@ -9,9 +9,8 @@
   <script type="module" src="index.js"></script>
 </head>
 <body>
-  <div class="form_container" id="auth-container">
-    <!-- Login form container -->
-    <div class="login_form" id="login-form-container">
+  <div class="form_container">
+    <div class="login_form">
       <form id="login-form">
         <h3>Log in with</h3>
         <div class="login_option">
@@ -44,9 +43,7 @@
         <p class="sign_up">Don't have an account? <a href="#" id="show-signup">Sign up</a></p>
       </form>
     </div>
-
-    <!-- Signup form container -->
-    <div class="signup_form" id="signup-form-container" style="display: none;">
+    <div class="signup_form" style="display: none;">
       <form id="signup-form">
         <h3>Sign up with</h3>
         <div class="login_option">
@@ -73,15 +70,9 @@
           <input type="password" id="signup-password" placeholder="Enter your password" required>
         </div>
         <button type="submit">Sign Up</button>
-        <p class="sign_up">Already have an account? <a href="#" id="show-login">Log in</a></p>
+        <p class="sign_up">Already have an account? <a href="user.html" id="show-login">Log in</a></p>
       </form>
     </div>
-  </div>
-
-  <div class="content" id="content" style="display: none;">
-    <h1>Welcome to Chatlinks</h1>
-    <p>This content is only visible to logged-in users.</p>
-    <button id="logout-button">Log Out</button>
   </div>
 </body>
 </html>
