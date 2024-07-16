@@ -191,8 +191,19 @@
         </div> 
     </main> 
   <script type="module">
-    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
     const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        if (!user.emailVerified) {
+          alert('Please verify your email to access this page.');
+          window.location.href = "user.html";
+        }
+      } else {
+        window.location.href = "user.html";
+      }
+    });
+
     const logoutButton = document.getElementById('logout-button');
     logoutButton.addEventListener('click', () => {
       signOut(auth).then(() => {
