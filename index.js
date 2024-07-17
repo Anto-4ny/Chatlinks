@@ -88,6 +88,15 @@ appleProvider.setCustomParameters({
       });
   });
 });
+// Email/Password login1
+const loginEmailpassword =async () => {
+  const loginEmail = txtEmail.value;
+  const loginPassword = txtpassword.value;
+
+  const userCredential = await signInwithEmailAndPassword(auth, loginEmail, loginPassword);
+  console.log(userCredential.user);
+
+
 
 // Email/Password login
 const loginForm = document.getElementById('login-form');
