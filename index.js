@@ -1,15 +1,18 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
 import {
-  getAuth,
   signInWithPopup,
   GoogleAuthProvider, 
-  OAuthProvider, 
-  signInWithEmailAndPassword, 
+  OAuthProvider,  
   createUserWithEmailAndPassword,
   sendEmailVerification, sendPasswordResetEmail, 
   confirmPasswordReset } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
-
+import { initializeApp } from 'firebase/app';
+import {
+      getAuth,
+      connectAuthemulator,
+      signInWithEmailAndPassword,
+      }from 'firebase/auth'
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBEj4ktySbzLa8imFNDgchhpddAjwCEHRA",
@@ -24,7 +27,9 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-const auth = getAuth(app);
+const auth = getAuth(firebaseApp);
+connectAuthEmulator(auth, "https://localhost:9099");
+
 
 // Google login and signup
 const googleLoginButton = document.getElementById('google-login');
