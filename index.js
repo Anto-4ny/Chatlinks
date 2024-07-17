@@ -41,7 +41,7 @@ googleProvider.setCustomParameters({
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         if (result.user.emailVerified) {
-          window.location.href = "page1.html"; // Redirect to a protected page
+          window.location.href = "index.html"; // Redirect to a protected page
         } else {
           sendEmailVerification(result.user)
             .then(() => {
@@ -70,7 +70,7 @@ appleProvider.setCustomParameters({
     signInWithPopup(auth, appleProvider)
       .then((result) => {
         if (result.user.emailVerified) {
-          window.location.href = "page1.html"; // Redirect to a protected page
+          window.location.href = "index.html"; // Redirect to a protected page
         } else {
           sendEmailVerification(result.user)
             .then(() => {
@@ -94,7 +94,7 @@ loginForm.addEventListener('submit', (e) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       if (userCredential.user.emailVerified) {
-        window.location.href = "page1.html"; // Redirect to a protected page
+        window.location.href = "index.html"; // Redirect to a protected page
       } else {
         alert('Please verify your email before logging in.');
       }
