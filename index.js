@@ -1,6 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
-import {
+import {getAuth,
+        connectAuthEmulator,
+        signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider, 
   OAuthProvider,  
@@ -28,7 +30,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(firebaseApp);
-connectAuthEmulator(auth, "https://localhost:9099");
+connectAuthEmulator(auth, "https://localhost:8080");
 
 
 // Google login and signup
@@ -89,12 +91,12 @@ appleProvider.setCustomParameters({
   });
 });
 // Email/Password login1
-const loginEmailpassword =async () => {
-  const loginEmail = txtEmail.value;
-  const loginPassword = txtpassword.value;
+//const loginEmailpassword =async () => {
+//  const loginEmail = txtEmail.value;
+//  const loginPassword = txtpassword.value;
 
-  const userCredential = await signInwithEmailAndPassword(auth, loginEmail, loginPassword);
-  console.log(userCredential.user);
+ // const userCredential = await signInwithEmailAndPassword(auth, loginEmail, loginPassword);
+//  console.log(userCredential.user);
 
 
 
