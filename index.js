@@ -1,20 +1,17 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
-import {getAuth,
-        connectAuthEmulator,
-        signInWithEmailAndPassword,
-  signInWithPopup,
-  GoogleAuthProvider, 
-  OAuthProvider,  
-  createUserWithEmailAndPassword,
-  sendEmailVerification, sendPasswordResetEmail, 
-  confirmPasswordReset } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
-import { initializeApp } from 'firebase/app';
 import {
-      getAuth,
-      connectAuthemulator,
-      signInWithEmailAndPassword,
-      }from 'firebase/auth'
+  getAuth,
+  connectAuthEmulator,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+  OAuthProvider,
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
+  confirmPasswordReset
+} from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBEj4ktySbzLa8imFNDgchhpddAjwCEHRA",
@@ -29,9 +26,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-const auth = getAuth(firebaseApp);
-connectAuthEmulator(auth, "https://localhost:8080");
-
+const auth = getAuth(app);
+connectAuthEmulator(auth, "http://localhost:8080");
 
 // Google login and signup
 const googleLoginButton = document.getElementById('google-login');
@@ -47,14 +43,7 @@ googleProvider.setCustomParameters({
     e.preventDefault();
     signInWithPopup(auth, googleProvider)
       .then((result) => {
-        if (result.user.emailVerified) {
-          window.location.href = "index.html"; // Redirect to a protected page
-        } else {
-          sendEmailVerification(result.user)
-            .then(() => {
-              alert('Verification email sent. Please check your inbox.');
-            });
-        }
+        window.location.href = "index.html"; // Redirect to a protected page
       })
       .catch((error) => {
         console.error(error);
@@ -76,29 +65,13 @@ appleProvider.setCustomParameters({
     e.preventDefault();
     signInWithPopup(auth, appleProvider)
       .then((result) => {
-        if (result.user.emailVerified) {
-          window.location.href = "index.html"; // Redirect to a protected page
-        } else {
-          sendEmailVerification(result.user)
-            .then(() => {
-              alert('Verification email sent. Please check your inbox.');
-            });
-        }
+        window.location.href = "index.html"; // Redirect to a protected page
       })
       .catch((error) => {
         console.error(error);
       });
   });
 });
-// Email/Password login1
-//const loginEmailpassword =async () => {
-//  const loginEmail = txtEmail.value;
-//  const loginPassword = txtpassword.value;
-
- // const userCredential = await signInwithEmailAndPassword(auth, loginEmail, loginPassword);
-//  console.log(userCredential.user);
-
-
 
 // Email/Password login
 const loginForm = document.getElementById('login-form');
@@ -109,11 +82,7 @@ loginForm.addEventListener('submit', (e) => {
 
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      if (userCredential.user.emailVerified) {
-        window.location.href = "index.html"; // Redirect to a protected page
-      } else {
-        alert('Please verify your email before logging in.');
-      }
+      window.location.href = "index.html"; // Redirect to a protected page
     })
     .catch((error) => {
       console.error(error);
@@ -129,13 +98,7 @@ signupForm.addEventListener('submit', (e) => {
 
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      sendEmailVerification(userCredential.user)
-        .then(() => {
-          alert('Verification email sent. Please check your inbox.');
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      window.location.href = "index.html"; // Redirect to a protected page
     })
     .catch((error) => {
       console.error(error);
@@ -224,73 +187,60 @@ backToLoginLink.addEventListener('click', (e) => {
   setNewPasswordFormContainer.style.display = 'none';
   loginFormContainer.style.display = 'block';
 });
-          
-  
-          
-           
-const textarea = document 
-    .querySelector('#post-desc'); 
-const postBtn = document 
-    .querySelector('.post-btn'); 
-const postAudienceBtn = document 
-    .querySelector('.post-audience'); 
-const backBtn = document. 
-    querySelector('.arrow-left-icon'); 
-const createPostSection = document. 
-    querySelector('.create-post'); 
-const postAudienceSection = document. 
-    querySelector('.post-audience-section'); 
-const emojiBtn = document. 
-    querySelector('.emoji'); 
-const emojiPicker = document. 
-    querySelector('emoji-picker'); 
-const audienceOptions = document. 
-    querySelectorAll(".audience-option"); 
-const radioBtns = document. 
-    querySelectorAll(".audience-option-radio"); 
-  
-document.body.style.overflowX = 'none'; 
-  
-textarea.addEventListener("input", () => { 
-    if (textarea.value != '') 
-        postBtn.disabled = false; 
-    else
-        postBtn.disabled = true; 
-}) 
-emojiBtn.addEventListener("click", () => { 
-    if (emojiPicker.style.display == 'none') 
-        emojiPicker.style.display = 'block'; 
-    else
-        emojiPicker.style.display = 'none'; 
-}) 
-emojiPicker.addEventListener('emoji-click', e => { 
-    textarea.value += e.detail.unicode; 
-}) 
-postAudienceBtn.addEventListener('click', () => { 
-    document.querySelector('.wrapper') 
-        .classList.add('wrapper-active'); 
-    postAudienceSection.style.display = 'block'; 
-    createPostSection.style.display = 'none'; 
-}) 
-audienceOptions.forEach(option => { 
-    option.addEventListener('click', e => { 
-        if (!option.classList.contains('active')) { 
-            option.classList.add('active'); 
-            e.currentTarget.children[1] 
-                .children[0].children[0].checked = true; 
-        } 
-        for (let i = 0; i < audienceOptions.length; i++) { 
-            if (e.currentTarget != audienceOptions[i]) { 
-                audienceOptions[i].classList 
-                    .remove('active'); 
-                radioBtns[i].checked = false; 
-            } 
-        } 
-    }) 
-}) 
-backBtn.addEventListener('click', () => { 
-    document.querySelector('.wrapper') 
-        .classList.remove('wrapper-active'); 
-    postAudienceSection.style.display = 'none'; 
-    createPostSection.style.display = 'block'; 
-})
+
+// Post functionality
+const textarea = document.querySelector('#post-desc');
+const postBtn = document.querySelector('.post-btn');
+const postAudienceBtn = document.querySelector('.post-audience');
+const backBtn = document.querySelector('.arrow-left-icon');
+const createPostSection = document.querySelector('.create-post');
+const postAudienceSection = document.querySelector('.post-audience-section');
+const emojiBtn = document.querySelector('.emoji');
+const emojiPicker = document.querySelector('emoji-picker');
+const audienceOptions = document.querySelectorAll(".audience-option");
+const radioBtns = document.querySelectorAll(".audience-option-radio");
+
+document.body.style.overflowX = 'none';
+
+textarea.addEventListener("input", () => {
+  if (textarea.value != '')
+    postBtn.disabled = false;
+  else
+    postBtn.disabled = true;
+});
+
+emojiBtn.addEventListener("click", () => {
+  emojiPicker.style.display = emojiPicker.style.display === 'none' ? 'block' : 'none';
+});
+
+emojiPicker.addEventListener('emoji-click', e => {
+  textarea.value += e.detail.unicode;
+});
+
+postAudienceBtn.addEventListener('click', () => {
+  document.querySelector('.wrapper').classList.add('wrapper-active');
+  postAudienceSection.style.display = 'block';
+  createPostSection.style.display = 'none';
+});
+
+audienceOptions.forEach(option => {
+  option.addEventListener('click', e => {
+    if (!option.classList.contains('active')) {
+      option.classList.add('active');
+      e.currentTarget.children[1].children[0].children[0].checked = true;
+    }
+    audienceOptions.forEach((otherOption, i) => {
+      if (e.currentTarget !== otherOption) {
+        otherOption.classList.remove('active');
+        radioBtns[i].checked = false;
+      }
+    });
+  });
+});
+
+backBtn.addEventListener('click', () => {
+  document.querySelector('.wrapper').classList.remove('wrapper-active');
+  postAudienceSection.style.display = 'none';
+  createPostSection.style.display = 'block';
+});
+              
