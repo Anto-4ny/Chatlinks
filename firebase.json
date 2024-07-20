@@ -15,6 +15,14 @@
     "logging": {
       "host": "127.0.0.1",
       "port": 4501
+    },
+    "firestore": {
+      "host": "127.0.0.1",
+      "port": 8080
     }
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
   }
 }
