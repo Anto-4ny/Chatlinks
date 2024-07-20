@@ -6,38 +6,28 @@
   <title>Login Form for chatlinks</title>
   <link rel="stylesheet" href="index.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js"></script>
 </head>
 <body>
   <div class="login_form">
-    <!-- Login form container -->
     <form id="login-form" action="#">
       <h3>Log in with</h3>
       <div class="login_option">
-        <!-- Google button -->
         <div class="option">
-          <button id="google-login">
-           <!-- <img src="assets/google.png" alt="Google" />-->
-            <span>Google</span>
-          </button>
+          <button id="google-login"><span>Google</span></button>
         </div>
-        <!-- Apple button -->
         <div class="option">
-          <button id="apple-login">
-            <!--<img src="assets/apple.png" alt="Apple" />-->
-            <span>Apple</span>
-          </button>
+          <button id="apple-login"><span>Apple</span></button>
         </div>
       </div>
-      <!-- Login option separator -->
-      <p class="separator">
-        <span>or</span>
-      </p>
-      <!-- Email input box -->
+      <p class="separator"><span>or</span></p>
       <div class="input_box">
         <label for="login-email">Email</label>
         <input type="email" id="login-email" placeholder="Enter email address" required />
       </div>
-      <!-- Password input box -->
       <div class="input_box">
         <div class="password_title">
           <label for="login-password">Password</label>
@@ -45,12 +35,10 @@
         </div>
         <input type="password" id="login-password" placeholder="Enter your password" required />
       </div>
-      <!-- Login button -->
       <button type="submit">Log In</button>
       <p class="sign_up">Don't have an account? <a href="#" id="show-signup">Sign up</a></p>
     </form>
   </div>
-
   <div class="signup_form" style="display: none;">
     <!-- Signup form container -->
     <form id="signup-form" action="#">
