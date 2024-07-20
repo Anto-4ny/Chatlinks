@@ -29,10 +29,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
-connectAuthEmulator(auth, "http://localhost:9099");
-
-const db = getFirestore(app);
-connectFirestoreEmulator(db, "localhost", 8080);
+connectAuthEmulator(auth, "http://localhost:8080");
 
 // Google login and signup
 const googleLoginButton = document.getElementById('google-login');

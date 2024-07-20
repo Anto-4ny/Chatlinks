@@ -15,6 +15,7 @@
     "logging": {
       "host": "127.0.0.1",
       "port": 4501
+<<<<<<< HEAD
     },
     "firestore": {
       "host": "127.0.0.1",
@@ -26,3 +27,9 @@
     "indexes": "firestore.indexes.json"
   }
 }
+=======
+    }
+  }
+}
+
+>>>>>>> 64bfae8d465a920909517ce8c008a98de484f03f
