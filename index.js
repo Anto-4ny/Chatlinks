@@ -79,37 +79,35 @@ appleProvider.setCustomParameters({
   });
 });
 
-// Email/Password login
-const loginForm = document.getElementById('login-form');
-loginForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const email = loginForm['login-email'].value;
-  const password = loginForm['login-password'].value;
+document.getElementById('login-form').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const email = document.getElementById('login-email').value;
+  const password = document.getElementById('login-password').value;
 
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      window.location.href = "index.html"; // Redirect to a protected page
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    console.log('Signed in user:', userCredential.user);
+    // Redirect or update UI as needed
+  } catch (error) {
+    console.error('Error signing in:', error);
+  }
 });
 
-// Email/Password signup
-const signupForm = document.getElementById('signup-form');
-signupForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const email = signupForm['signup-email'].value;
-  const password = signupForm['signup-password'].value;
-
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      window.location.href = "index.html"; // Redirect to a protected page
-    })
-    .catch((error) => {
-      console.error(error);
+// Example for Firestore interaction
+const addUserToFirestore = async (user) => {
+  try {
+    const docRef = await addDoc(collection(db, "users"), {
+      uid: user.uid,
+      email: user.email
     });
-});
+    console.log("Document written with ID: ", docRef.id);
+  } catch (error) {
+    console.error("Error adding document: ", error);
+  }
+};
+
+// Call addUserToFirestore function after user is successfully signed in or signed up
+
 
 // Password reset form
 const forgotPasswordLink = document.getElementById('forgot-password');
