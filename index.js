@@ -4,13 +4,17 @@ import {
   getAuth,
   connectAuthEmulator,
   signInWithEmailAndPassword,
-  signInWithPopup,
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
+  confirmPasswordReset,
   GoogleAuthProvider,
   OAuthProvider,
   createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-  confirmPasswordReset
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+import {
+  getFirestore,
+  connectFirestoreEmulator
+} from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -23,11 +27,13 @@ const firebaseConfig = {
   measurementId: "G-Y2QYK39WYG"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
-connectAuthEmulator(auth, "http://localhost:9090");
+connectAuthEmulator(auth, "http://localhost:9099");
+
+const db = getFirestore(app);
+connectFirestoreEmulator(db, "localhost", 8080);
 
 // Google login and signup
 const googleLoginButton = document.getElementById('google-login');
