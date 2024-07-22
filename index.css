@@ -550,3 +550,64 @@ form button:hover {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 }
+
+/*MESSAGING FEATURE*/
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 600px;
+    height: 100%;
+    max-height: 600px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+}
+
+.messages {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: #f0f0f0;
+}
+
+.message-input {
+    display: flex;
+    padding: 10px;
+    background-color: white;
+    border-top: 1px solid #ddd;
+}
+
+.message-input input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.message-input button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+@media (max-width: 600px) {
+    .chat-container {
+        height: 100%;
+        border-radius: 0;
+    }
+}
+
