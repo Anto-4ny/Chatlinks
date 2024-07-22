@@ -247,4 +247,32 @@ backBtn.addEventListener('click', () => {
   postAudienceSection.style.display = 'none';
   createPostSection.style.display = 'block';
 });
-              
+
+
+document.getElementById('login-form').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const email = document.getElementById('login-email').value;
+  const password = document.getElementById('login-password').value;
+
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    console.log('Signed in user:', userCredential.user);
+    window.location.href = "messaging.html";  // Redirect to messaging page
+  } catch (error) {
+    console.error('Error signing in:', error);
+  }
+});
+
+document.getElementById('signup-form').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const email = document.getElementById('signup-email').value;
+  const password = document.getElementById('signup-password').value;
+
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    console.log('Signed up user:', userCredential.user);
+    window.location.href = "messaging.html";  // Redirect to messaging page
+  } catch (error) {
+    console.error('Error signing up:', error);
+  }
+});
