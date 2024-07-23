@@ -192,63 +192,7 @@ backToLoginLink.addEventListener('click', (e) => {
   loginFormContainer.style.display = 'block';
 });
 
-// Post functionality
-const textarea = document.querySelector('#post-desc');
-const postBtn = document.querySelector('.post-btn');
-const postAudienceBtn = document.querySelector('.post-audience');
-const backBtn = document.querySelector('.arrow-left-icon');
-const createPostSection = document.querySelector('.create-post');
-const postAudienceSection = document.querySelector('.post-audience-section');
-const emojiBtn = document.querySelector('.emoji');
-const emojiPicker = document.querySelector('emoji-picker');
-const audienceOptions = document.querySelectorAll(".audience-option");
-const radioBtns = document.querySelectorAll(".audience-option-radio");
-
-document.body.style.overflowX = 'none';
-
-textarea.addEventListener("input", () => {
-  if (textarea.value != '')
-    postBtn.disabled = false;
-  else
-    postBtn.disabled = true;
-});
-
-emojiBtn.addEventListener("click", () => {
-  emojiPicker.style.display = emojiPicker.style.display === 'none' ? 'block' : 'none';
-});
-
-emojiPicker.addEventListener('emoji-click', e => {
-  textarea.value += e.detail.unicode;
-});
-
-postAudienceBtn.addEventListener('click', () => {
-  document.querySelector('.wrapper').classList.add('wrapper-active');
-  postAudienceSection.style.display = 'block';
-  createPostSection.style.display = 'none';
-});
-
-audienceOptions.forEach(option => {
-  option.addEventListener('click', e => {
-    if (!option.classList.contains('active')) {
-      option.classList.add('active');
-      e.currentTarget.children[1].children[0].children[0].checked = true;
-    }
-    audienceOptions.forEach((otherOption, i) => {
-      if (e.currentTarget !== otherOption) {
-        otherOption.classList.remove('active');
-        radioBtns[i].checked = false;
-      }
-    });
-  });
-});
-
-backBtn.addEventListener('click', () => {
-  document.querySelector('.wrapper').classList.remove('wrapper-active');
-  postAudienceSection.style.display = 'none';
-  createPostSection.style.display = 'block';
-});
-
-
+//login and sign up
 document.getElementById('login-form').addEventListener('submit', async (event) => {
   event.preventDefault();
   const email = document.getElementById('login-email').value;
@@ -276,3 +220,56 @@ document.getElementById('signup-form').addEventListener('submit', async (event) 
     console.error('Error signing up:', error);
   }
 });
+
+
+
+// index.js
+
+import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js';
+import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js';
+
+// Initialize Firebase
+const db = getFirestore();
+const auth = getAuth();
+
+// Monitor Authentication State
+onAuthStateChanged(auth, user => {
+    if (!user) {
+        window.location.href = "user.html";
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const postButton = document.querySelector('.post-btn');
+    const postDesc = document.getElementById('post-desc');
+    const fileUpload = document.getElementById('file-upload');
+
+    // Enable the Post button when there is content
+    postDesc.addEventListener('input', () => {
+        postButton.disabled = !postDesc.value.trim();
+    });
+
+    // Handle Post Button Click
+    postButton.addEventListener('click', async () => {
+        const description = postDesc.value.trim();
+        const files = fileUpload.files;
+
+        if (description || files.length > 0) {
+            try {
+                await addDoc(collection(db, 'posts'), {
+                    description,
+                    timestamp: new Date(),
+                    userId: auth.currentUser.uid,
+                    // Additional fields for handling files would go here
+                });
+                alert('Post created successfully');
+                postDesc.value = '';
+                fileUpload.value = '';
+                postButton.disabled = true;
+            } catch (e) {
+                console.error('Error adding document: ', e);
+            }
+        }
+    });
+});
+
