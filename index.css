@@ -916,6 +916,12 @@ textarea {
     font-size: 12px;
 }
 /* Background Options */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
 .background-options {
     display: flex;
     align-items: center;
@@ -945,18 +951,6 @@ textarea {
     flex-shrink: 0; /* Prevents shrinking */
 }
 
-.background-option[data-bg="bg12"] {
-    background-image: url('assets/backgrounds/bg12.jpeg');
-}
-.background-option[data-bg="bg13"] {
-    background-image: url('assets/backgrounds/bg13.jpeg');
-}
-.background-option[data-bg="bg14"] {
-    background-image: url('assets/backgrounds/bg14.jpeg');
-}
-.background-option[data-bg="bg15"] {
-    background-image: url('assets/backgrounds/bg15.jpeg');
-}
 
 .background-option.selected {
     border: 2px solid #007bff;
