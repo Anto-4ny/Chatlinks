@@ -897,6 +897,7 @@ textarea {
     padding: 10px;
     background: #fff;
     border-top: 1px solid #ddd;
+    position: fixed;
 }
 
 .footer-item a {
@@ -914,15 +915,6 @@ textarea {
 .footer-item span {
     font-size: 12px;
 }
-
-
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
 /* Background Options */
 .background-options {
     display: flex;
@@ -984,7 +976,7 @@ body {
 }
 
 .post-btn {
-    background-color: grey;
+    background-color: blue;
     color: white;
     padding: 10px;
     border: none;
