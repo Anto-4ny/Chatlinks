@@ -244,6 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fileUpload = document.getElementById('file-upload');
     const audienceOptions = document.getElementById('post-audience-options');
     const audienceSelector = document.getElementById('post-audience');
+    const backgroundOptions = document.querySelectorAll('.background-option');
 
     const audienceOptionsMap = {
         public: ['friends', 'friends-except', 'specific-friends', 'only-me'],
@@ -284,6 +285,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Handle Background Option Selection
+    backgroundOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            backgroundOptions.forEach(bg => bg.classList.remove('selected'));
+            option.classList.add('selected');
+            postDesc.style.backgroundImage = `url('${option.style.backgroundImage.slice(5, -2)}')`;
+        });
+    });
+
     // Enable the Post button when there is content
     postDesc.addEventListener('input', () => {
         postButton.disabled = !postDesc.value.trim();
@@ -300,7 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     description,
                     timestamp: new Date(),
                     userId: auth.currentUser.uid,
-                    // Additional fields for handling files would go here
+                    // Additional fields for handling files and selected background would go here
                 });
                 alert('Post created successfully');
                 postDesc.value = '';
@@ -312,4 +322,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-                                
+                              
