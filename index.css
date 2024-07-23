@@ -6,32 +6,16 @@
 }
 
 .header {
-  background-color: #ffffff;
-  padding: 20px 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-.header .icons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f9fa; /* Light background for the header */
+    border-bottom: 1px solid #ddd;
 }
 
-.header .icons i {
-  color: gray;
-  width: 20px;
-}
-
-.header {
+.header-top {
     display: flex;
     align-items: center;
     padding: 10px;
-    background-color: #f8f9fa; /* Light background for the header */
-    border-bottom: 1px solid #ddd;
 }
 
 .logo {
@@ -50,14 +34,6 @@
 .logo-text {
     font-size: 24px; /* Adjust as needed */
     font-weight: bold;
-}
-
-.search-bar {
-    flex: 1;
-    padding: 5px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin: 0 10px;
 }
 
 .icons {
@@ -88,13 +64,22 @@
     background-color: #c82333; /* Darker red on hover */
 }
 
+.search-bar-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-color: #fff; /* Background color for the search bar */
+    border-top: 1px solid #ddd;
+}
 
 .search-bar {
-  width: 60%;
-  padding: 10px;
-  border-radius: 20px;
-  border: 1px solid #ddd;
+    width: 100%;
+    max-width: 600px; /* Adjust max width as needed */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
+
 
 .container {
   /* max-width: 40vw;s */
