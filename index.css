@@ -709,17 +709,6 @@ textarea {
     resize: vertical;
 }
 
-.emoji-picker {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.emoji {
-    margin-left: 10px;
-    font-size: 20px;
-}
-
 .add-to-your-post {
     margin-top: 10px;
 }
@@ -786,6 +775,7 @@ textarea {
     align-items: center;
     padding: 10px;
     border-bottom: 1px solid #ddd;
+    cursor: pointer;
 }
 
 .audience-option-left {
@@ -849,4 +839,3 @@ textarea {
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     cursor: pointer;
  }
-
