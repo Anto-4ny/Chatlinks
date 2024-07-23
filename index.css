@@ -839,3 +839,60 @@ textarea {
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     cursor: pointer;
  }
+
+/* Background Options Section */
+.background-options {
+    margin-top: 10px;
+}
+
+.background-options-label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.background-options-scroll {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 5px 0;
+}
+
+.background-option {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    border-radius: 5px;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.background-option[data-bg="bg1"] {
+    background-image: url('path-to-background1.jpg');
+}
+
+.background-option[data-bg="bg2"] {
+    background-image: url('path-to-background2.jpg');
+}
+
+.background-option[data-bg="bg3"] {
+    background-image: url('path-to-background3.jpg');
+}
+
+/* Highlight selected background */
+.background-option.selected {
+    border: 2px solid #007bff;
+}
+
+/* Ensure textarea and post button adjust to new layout */
+textarea {
+    margin-bottom: 10px;
+}
+
+.post-btn {
+    margin-top: 10px;
+ }
+ 
