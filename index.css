@@ -871,7 +871,7 @@ textarea {
 }
 
 .background-option[data-bg="bg1"] {
-    background-image: url('path-to-background1.jpg');
+    background-image: url('assets/backgrounds/images.jpeg');
 }
 
 .background-option[data-bg="bg2"] {
