@@ -870,17 +870,19 @@ textarea {
 .background-options-scroll {
     display: flex;
     overflow-x: auto;
+    padding-bottom: 10px; /* To avoid content getting cut off */
 }
 
 .background-option {
-    width: 60px;
-    height: 60px;
+    width: 80px; /* Consistent size for all options */
+    height: 80px;
     margin-right: 10px;
     border-radius: 5px;
     cursor: pointer;
     background-size: cover;
     background-position: center;
     border: 2px solid transparent;
+    flex-shrink: 0; /* Prevents shrinking */
 }
 
 .background-option[data-bg="bg1"] {
@@ -933,6 +935,17 @@ textarea {
 
 .background-option.selected {
     border: 2px solid #007bff;
+}
+
+.post-content {
+    position: relative;
+}
+
+#post-desc {
+    position: relative;
+    z-index: 1;
+    background-size: cover;
+    background-position: center;
 }
 
 .post-btn {
