@@ -887,6 +887,36 @@ textarea {
 .background-option[data-bg="bg5"] {
     background-image: url('assets/backgrounds/bg5.jpeg');
 }
+.background-option[data-bg="bg6"] {
+    background-image: url('assets/backgrounds/bg6.jpeg');
+}
+.background-option[data-bg="bg7"] {
+    background-image: url('assets/backgrounds/bg7.jpeg');
+}
+.background-option[data-bg="bg8"] {
+    background-image: url('assets/backgrounds/bg8.jpeg');
+}
+.background-option[data-bg="bg9"] {
+    background-image: url('assets/backgrounds/bg9.jpeg');
+}
+.background-option[data-bg="bg10"] {
+    background-image: url('assets/backgrounds/bg10.jpeg');
+}
+.background-option[data-bg="bg11"] {
+    background-image: url('assets/backgrounds/bg11.jpeg');
+}
+.background-option[data-bg="bg12"] {
+    background-image: url('assets/backgrounds/bg12.jpeg');
+}
+.background-option[data-bg="bg13"] {
+    background-image: url('assets/backgrounds/bg13.jpeg');
+}
+.background-option[data-bg="bg14"] {
+    background-image: url('assets/backgrounds/bg14.jpeg');
+}
+.background-option[data-bg="bg15"] {
+    background-image: url('assets/backgrounds/bg15.jpeg');
+}
 
 /* Highlight selected background */
 .background-option.selected {
