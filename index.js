@@ -222,7 +222,6 @@ document.getElementById('signup-form').addEventListener('submit', async (event) 
 });
 
 
-
 // index.js
 
 import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js';
@@ -243,6 +242,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const postButton = document.querySelector('.post-btn');
     const postDesc = document.getElementById('post-desc');
     const fileUpload = document.getElementById('file-upload');
+    const audienceOptions = document.getElementById('post-audience-options');
+    const audienceSelector = document.getElementById('post-audience');
+
+    const audienceOptionsMap = {
+        public: ['friends', 'friends-except', 'specific-friends', 'only-me'],
+        friends: ['friends-except', 'specific-friends', 'only-me'],
+        'friends-except': ['specific-friends', 'only-me'],
+        'specific-friends': ['only-me'],
+        'only-me': []
+    };
+
+    // Toggle Audience Options
+    audienceSelector.addEventListener('click', () => {
+        audienceOptions.style.display = audienceOptions.style.display === 'block' ? 'none' : 'block';
+    });
+
+    audienceOptions.addEventListener('click', event => {
+        const option = event.target.closest('.audience-option');
+        if (option) {
+            const selectedOption = option.getAttribute('data-option');
+            const optionsToShow = audienceOptionsMap[selectedOption] || [];
+            
+            document.querySelectorAll('.audience-option').forEach(el => {
+                if (optionsToShow.includes(el.getAttribute('data-option')) || selectedOption === 'public') {
+                    el.style.display = 'flex';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+
+            audienceOptions.querySelectorAll('input').forEach(input => {
+                if (input.closest('.audience-option').getAttribute('data-option') === selectedOption) {
+                    input.checked = true;
+                } else {
+                    input.checked = false;
+                }
+            });
+
+            audienceOptions.style.display = 'none';
+        }
+    });
 
     // Enable the Post button when there is content
     postDesc.addEventListener('input', () => {
@@ -272,4 +312,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-
+                                
