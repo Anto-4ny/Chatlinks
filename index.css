@@ -4,11 +4,9 @@
   padding: 0;
   background-color: #ffffff;
 }
-
+/* General Header Styles */
 .header {
-    display: flex;
-    flex-direction: column;
-    background-color: #f8f9fa; /* Light background for the header */
+    background-color: #f8f9fa; 
     border-bottom: 1px solid #ddd;
 }
 
@@ -16,6 +14,8 @@
     display: flex;
     align-items: center;
     padding: 10px;
+    background-color: #fff;  
+    flex-wrap: wrap; 
 }
 
 .logo {
@@ -23,16 +23,16 @@
     align-items: center;
     text-decoration: none;
     color: inherit;
-    margin-right: auto; /* Push other content to the right */
+    margin-right: auto;
 }
 
 .logo-image {
-    height: 40px; /* Adjust as needed */
+    height: 50px;
     margin-right: 10px;
 }
 
 .logo-text {
-    font-size: 24px; /* Adjust as needed */
+    font-size: 24px; 
     font-weight: bold;
 }
 
@@ -43,12 +43,12 @@
 
 .icons a {
     margin: 0 10px;
-    color: #333; /* Adjust color as needed */
+    color: #333; 
     text-decoration: none;
 }
 
 .icons a:hover {
-    color: #007bff; /* Color on hover */
+    color: #007bff; 
 }
 
 #logout-button {
@@ -61,24 +61,73 @@
 }
 
 #logout-button:hover {
-    background-color: #c82333; /* Darker red on hover */
+    background-color: #c82333;
 }
 
+/* Search Bar Styles */
 .search-bar-container {
-    display: flex;
-    justify-content: center;
+    width: 100%;
     padding: 10px;
-    background-color: #fff; /* Background color for the search bar */
+    background-color: #fff; 
     border-top: 1px solid #ddd;
 }
 
 .search-bar {
     width: 100%;
-    max-width: 600px; /* Adjust max width as needed */
+    max-width: 1200px; 
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    display: block;
+    margin: 0 auto; 
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .icons {
+        margin-bottom: 10px;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .icons a {
+        margin: 0;
+        font-size: 16px; 
+    }
+
+    #logout-button {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .search-bar {
+        max-width: 100%; 
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-text {
+        font-size: 20px;
+    }
+
+    .search-bar {
+        padding: 8px;
+    }
+
+    .icons a {
+        font-size: 14px; 
+    }
+     }
+
 
 
 .container {
