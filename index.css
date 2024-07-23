@@ -818,49 +818,20 @@ textarea {
     font-size: 12px;
 }
 
-/* Post Button on Bottom */
-.Button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-.Button .post-btn {
-    background: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    cursor: pointer;
- }
-
-/* Background Container */
-.background-container {
-    position: relative;
-}
-
-textarea {
-    width: 100%;
-    height: 100px;
-    border: none;
-    padding: 10px;
-    box-sizing: border-box;
-    border-radius: 5px;
-    background-color: transparent; /* Ensure the background is visible */
-    z-index: 1; /* Make sure the textarea is on top */
-    position: relative;
-}
-
+/* Background Options */
 .background-options {
     display: flex;
     align-items: center;
     margin-top: 10px;
+    overflow-x: auto; /* Allows horizontal scrolling */
 }
 
 .background-options-label {
@@ -884,6 +855,112 @@ textarea {
     border: 2px solid transparent;
     flex-shrink: 0; /* Prevents shrinking */
 }
+
+.background-option[data-bg="bg12"] {
+    background-image: url('assets/backgrounds/bg12.jpeg');
+}
+.background-option[data-bg="bg13"] {
+    background-image: url('assets/backgrounds/bg13.jpeg');
+}
+.background-option[data-bg="bg14"] {
+    background-image: url('assets/backgrounds/bg14.jpeg');
+}
+.background-option[data-bg="bg15"] {
+    background-image: url('assets/backgrounds/bg15.jpeg');
+}
+
+.background-option.selected {
+    border: 2px solid #007bff;
+}
+
+.post-content {
+    position: relative;
+}
+
+#post-desc {
+    position: relative;
+    z-index: 1;
+    background-size: cover;
+    background-position: center;
+    padding: 10px; /* Add padding for text */
+    border-radius: 5px; /* Match the textarea with the background */
+}
+
+.post-btn {
+    background-color: grey;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.post-btn.enabled {
+    background-color: #007bff;
+}
+
+/* Audience Options */
+.post-audience-section {
+    position: absolute;
+    left: 0;
+    top: 50px; /* Adjust this if necessary */
+    width: 100%;
+    max-width: 300px;
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    display: none;
+    overflow-y: auto; /* Allows vertical scrolling if necessary */
+}
+
+.post-audience-header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.arrow-left-icon {
+    margin-right: 10px;
+}
+
+.post-audience-content {
+    padding: 10px;
+}
+
+.audience-option {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    flex-wrap: nowrap; /* Prevents wrapping */
+}
+
+.audience-option:hover {
+    background-color: #f0f0f0;
+}
+
+.audience-option-left {
+    display: flex;
+    align-items: center;
+}
+
+.audience-option-right {
+    margin-left: auto;
+}
+
+.audience-option-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.audience-option-radio {
+    display: none;
+}
+
+
+
 
 .background-option[data-bg="bg1"] {
     background-image: url('assets/backgrounds/images.jpeg');
@@ -933,87 +1010,53 @@ textarea {
     background-image: url('assets/backgrounds/bg15.jpeg');
 }
 
-.background-option.selected {
-    border: 2px solid #007bff;
+/* Responsive Design */
+@media (max-width: 768px) {
+    .background-option {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .post-btn {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .post-content {
+        padding: 5px;
+    }
+
+    .post-audience-section {
+        width: 100%;
+        max-width: 100%;
+        top: 40px; /* Adjust top position for smaller screens */
+    }
+
+    .audience-option {
+        font-size: 14px;
+    }
 }
 
-.post-content {
-    position: relative;
-}
+@media (max-width: 480px) {
+    .background-option {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .post-btn {
+        padding: 6px;
+        font-size: 12px;
+    }
 
-#post-desc {
-    position: relative;
-    z-index: 1;
-    background-size: cover;
-    background-position: center;
-}
+    .post-content {
+        padding: 3px;
+    }
 
-.post-btn {
-    background-color: grey;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+    .post-audience-section {
+        top: 30px; /* Adjust top position for smaller screens */
+    }
 
-.post-btn.enabled {
-    background-color: #007bff;
-}
-
-/* Audience Options */
-.post-audience-section {
-    position: absolute;
-    left: 0;
-    top: 50px; /* Adjust this if necessary */
-    width: 300px;
-    background-color: #fff;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 10;
-    display: none;
-}
-
-.post-audience-header {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-.arrow-left-icon {
-    margin-right: 10px;
-}
-
-.post-audience-content {
-    padding: 10px;
-}
-
-.audience-option {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.audience-option:hover {
-    background-color: #f0f0f0;
-}
-
-.audience-option-left {
-    display: flex;
-    align-items: center;
-}
-
-.audience-option-right {
-    margin-left: auto;
-}
-
-.audience-option-icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-}
-
-.audience-option-radio {
-    display: none;
+    .audience-option {
+        font-size: 12px;
+    }
 }
