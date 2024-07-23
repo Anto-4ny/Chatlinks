@@ -28,9 +28,8 @@
                     <div class="profile-pic"></div>
                     <div class="user-info">
                         <div class="full-name">GeeksforGeeks</div>
-                        <div class="post-audience">
-                            <div class="friends-icon"></div>
-                            <span class="audience-text">Friends</span>
+                        <div class="post-audience" id="post-audience">
+                            <span class="audience-text">Public</span>
                             <div class="drop-down"></div>
                         </div>
                     </div>
@@ -38,10 +37,6 @@
                 <div class="post-content">
                     <textarea name="post-desc" id="post-desc" cols="30" rows="5"
                         placeholder="What's on your mind, Geek?"></textarea>
-                    <div class="emoji-picker">
-                        <emoji-picker class="light"></emoji-picker>
-                        <i class="emoji" aria-label="Insert an emoji" role="img"></i>
-                    </div>
                     <div class="add-to-your-post">
                         <span class="add-to-post-text">Add to your post</span>
                         <div class="add-to-post-icons">
@@ -59,7 +54,7 @@
                     <button class="post-btn" disabled>Post</button>
                 </div>
             </section>
-            <section class="post-audience-section">
+            <section class="post-audience-section" id="post-audience-options">
                 <header class="post-audience-header">
                     <div class="arrow-left-icon"></div>
                     <h1>Post Audience</h1>
@@ -71,8 +66,7 @@
                         post.</p>
                 </div>
                 <div class="post-audience-options">
-                    <!-- Update options with improved styling -->
-                    <div class="audience-option">
+                    <div class="audience-option" data-option="public">
                         <div class="audience-option-left">
                             <div class="audience-option-icon earth"></div>
                             <div class="audience-option-details">
@@ -84,7 +78,53 @@
                             <input type="radio" name="audience-option-radio" class="audience-option-radio">
                         </div>
                     </div>
-                    <!-- Repeat for other audience options -->
+                    <div class="audience-option" data-option="friends">
+                        <div class="audience-option-left">
+                            <div class="audience-option-icon user-group"></div>
+                            <div class="audience-option-details">
+                                <div class="audience-option-text">Friends</div>
+                                <span class="audience-option-desc">Your friends on Chatlinks</span>
+                            </div>
+                        </div>
+                        <div class="audience-option-right">
+                            <input type="radio" name="audience-option-radio" class="audience-option-radio">
+                        </div>
+                    </div>
+                    <div class="audience-option" data-option="friends-except">
+                        <div class="audience-option-left">
+                            <div class="audience-option-icon user"></div>
+                            <div class="audience-option-details">
+                                <div class="audience-option-text">Friends except...</div>
+                                <span class="audience-option-desc">Don't show to some friends</span>
+                            </div>
+                        </div>
+                        <div class="audience-option-right">
+                            <input type="radio" name="audience-option-radio" class="audience-option-radio">
+                        </div>
+                    </div>
+                    <div class="audience-option" data-option="specific-friends">
+                        <div class="audience-option-left">
+                            <div class="audience-option-icon specific-user"></div>
+                            <div class="audience-option-details">
+                                <div class="audience-option-text">Specific friends</div>
+                                <span class="audience-option-desc">Only show to some friends</span>
+                            </div>
+                        </div>
+                        <div class="audience-option-right">
+                            <input type="radio" name="audience-option-radio" class="audience-option-radio">
+                        </div>
+                    </div>
+                    <div class="audience-option" data-option="only-me">
+                        <div class="audience-option-left">
+                            <div class="audience-option-icon lock"></div>
+                            <div class="audience-option-details">
+                                <div class="audience-option-text">Only me</div>
+                            </div>
+                        </div>
+                        <div class="audience-option-right">
+                            <input type="radio" name="audience-option-radio" class="audience-option-radio">
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
@@ -138,5 +178,5 @@
     <script type="module" src="index.js"></script>
 </body>
 
-                    </html>
-                
+                        </html>
+                        
