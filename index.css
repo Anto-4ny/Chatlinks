@@ -875,11 +875,17 @@ textarea {
 }
 
 .background-option[data-bg="bg2"] {
-    background-image: url('path-to-background2.jpg');
+    background-image: url('assets/backgrounds/bg2.jpeg');
 }
 
 .background-option[data-bg="bg3"] {
-    background-image: url('path-to-background3.jpg');
+    background-image: url('assets/backgrounds/bg3.jpeg');
+}
+.background-option[data-bg="bg4"] {
+    background-image: url('assets/backgrounds/bg4.jpeg');
+}
+.background-option[data-bg="bg5"] {
+    background-image: url('assets/backgrounds/bg5.jpeg');
 }
 
 /* Highlight selected background */
