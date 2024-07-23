@@ -840,33 +840,46 @@ textarea {
     cursor: pointer;
  }
 
-/* Background Options Section */
+/* Background Container */
+.background-container {
+    position: relative;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    border: none;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background-color: transparent; /* Ensure the background is visible */
+    z-index: 1; /* Make sure the textarea is on top */
+    position: relative;
+}
+
 .background-options {
+    display: flex;
+    align-items: center;
     margin-top: 10px;
 }
 
 .background-options-label {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
+    margin-right: 10px;
 }
 
 .background-options-scroll {
     display: flex;
     overflow-x: auto;
-    white-space: nowrap;
-    padding: 5px 0;
 }
 
 .background-option {
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     margin-right: 10px;
     border-radius: 5px;
+    cursor: pointer;
     background-size: cover;
     background-position: center;
-    cursor: pointer;
     border: 2px solid transparent;
 }
 
@@ -918,17 +931,76 @@ textarea {
     background-image: url('assets/backgrounds/bg15.jpeg');
 }
 
-/* Highlight selected background */
 .background-option.selected {
     border: 2px solid #007bff;
 }
 
-/* Ensure textarea and post button adjust to new layout */
-textarea {
-    margin-bottom: 10px;
+.post-btn {
+    background-color: grey;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.post-btn {
-    margin-top: 10px;
- }
- 
+.post-btn.enabled {
+    background-color: #007bff;
+}
+
+/* Audience Options */
+.post-audience-section {
+    position: absolute;
+    left: 0;
+    top: 50px; /* Adjust this if necessary */
+    width: 300px;
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    display: none;
+}
+
+.post-audience-header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.arrow-left-icon {
+    margin-right: 10px;
+}
+
+.post-audience-content {
+    padding: 10px;
+}
+
+.audience-option {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.audience-option:hover {
+    background-color: #f0f0f0;
+}
+
+.audience-option-left {
+    display: flex;
+    align-items: center;
+}
+
+.audience-option-right {
+    margin-left: auto;
+}
+
+.audience-option-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.audience-option-radio {
+    display: none;
+}
