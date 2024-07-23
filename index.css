@@ -4,9 +4,10 @@
   padding: 0;
   background-color: #ffffff;
 }
+
 /* General Header Styles */
 .header {
-    background-color: #f8f9fa; 
+    background-color: #f8f9fa; /* Light background for the header */
     border-bottom: 1px solid #ddd;
 }
 
@@ -14,8 +15,8 @@
     display: flex;
     align-items: center;
     padding: 10px;
-    background-color: #fff;  
-    flex-wrap: wrap; 
+    background-color: #fff; /* White background for the header-top */
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
 }
 
 .logo {
@@ -23,16 +24,16 @@
     align-items: center;
     text-decoration: none;
     color: inherit;
-    margin-right: auto;
+    margin-right: auto; /* Push other content to the right */
 }
 
 .logo-image {
-    height: 50px;
+    height: 40px; /* Adjust as needed */
     margin-right: 10px;
 }
 
 .logo-text {
-    font-size: 24px; 
+    font-size: 24px; /* Adjust as needed */
     font-weight: bold;
 }
 
@@ -43,12 +44,12 @@
 
 .icons a {
     margin: 0 10px;
-    color: #333; 
+    color: #333; /* Adjust color as needed */
     text-decoration: none;
 }
 
 .icons a:hover {
-    color: #007bff; 
+    color: #007bff; /* Color on hover */
 }
 
 #logout-button {
@@ -61,25 +62,25 @@
 }
 
 #logout-button:hover {
-    background-color: #c82333;
+    background-color: #c82333; /* Darker red on hover */
 }
 
 /* Search Bar Styles */
 .search-bar-container {
     width: 100%;
     padding: 10px;
-    background-color: #fff; 
+    background-color: #fff; /* Background color for the search bar */
     border-top: 1px solid #ddd;
 }
 
 .search-bar {
     width: 100%;
-    max-width: 1200px; 
+    max-width: 1200px; /* Adjust max-width as needed */
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     display: block;
-    margin: 0 auto; 
+    margin: 0 auto; /* Center the search bar horizontally */
 }
 
 /* Responsive Styles */
@@ -101,7 +102,7 @@
 
     .icons a {
         margin: 0;
-        font-size: 16px; 
+        font-size: 16px; /* Adjust icon size for smaller screens */
     }
 
     #logout-button {
@@ -110,13 +111,13 @@
     }
 
     .search-bar {
-        max-width: 100%; 
+        max-width: 100%; /* Full width on smaller screens */
     }
 }
 
 @media (max-width: 480px) {
     .logo-text {
-        font-size: 20px;
+        font-size: 20px; /* Smaller logo text size for very small screens */
     }
 
     .search-bar {
@@ -124,10 +125,9 @@
     }
 
     .icons a {
-        font-size: 14px; 
+        font-size: 14px; /* Further reduce icon size for very small screens */
     }
-     }
-
+}
 
 
 .container {
