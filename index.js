@@ -297,6 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Enable the Post button when there is content
     postDesc.addEventListener('input', () => {
         postButton.disabled = !postDesc.value.trim();
+        postButton.classList.toggle('enabled', postDesc.value.trim());
     });
 
     // Handle Post Button Click
@@ -316,10 +317,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 postDesc.value = '';
                 fileUpload.value = '';
                 postButton.disabled = true;
+                postButton.classList.remove('enabled');
             } catch (e) {
                 console.error('Error adding document: ', e);
             }
         }
     });
 });
-                              
+              
