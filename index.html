@@ -6,22 +6,36 @@
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!--<script type="module" src="auth.js"></script>-->
+    <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js"></script>
   </head>
   <body>
     <div class="header">
-      <input type="text" placeholder="Search chatlink" class="search-bar">
-      <div class="icons">
-  <a href="user.html">
-    <i class="fa-solid fa-user"></i>
-  </a>
-  <a href="link-to-message-page">
-    <i class="fa-solid fa-message"></i>
-  </a>
-  <a href="link-to-notifications-page">
-    <i class="fa fa-bell"></i>
-  </a>
-          <button id="logout-button">Log Out</button>
-      </div>
+    <div class="header-top">
+        <a href="index.html" class="logo">
+            <img src="assets/logo.jpeg" alt="Chatlink Logo" class="logo-image"> <!-- Replace with your logo image path -->
+            <span class="logo-text">Chatlinks</span>
+        </a>
+        <div class="icons">
+            <a href="user.html">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            <a href="messaging.html">
+                <i class="fa-solid fa-message"></i>
+            </a>
+            <a href="link-to-notifications-page">
+                <i class="fa fa-bell"></i>
+            </a>
+            <button id="logout-button">Log Out</button>
+        </div>
+    </div>
+    <div class="search-bar-container">
+        <input type="text" placeholder="Search chatlink" class="search-bar">
+    </div>
     </div>
     <main>
       <section class="container">
@@ -140,32 +154,42 @@
     </main>
 
     <!-- footer section -->
-
-    <footer>
-      <div class="footer">
-        <div class="footer-item">
-          <i class="fa fa-home"></i>
-          <span>Home</span>
-        </div>
-        <div class="footer-item">
-          <i class="fa-brands fa-cc-discover"></i>
-          <span>Discover</span>
-        </div>
-        <div class="footer-item">
-          <i class="fa fa-video"></i>
-          <span>Reels</span>
-        </div>
-
-        <div class="footer-item">
-          <i class="fa fa-shopping-cart"></i>
-          <span>E-Shop</span>
-        </div>
-        <div class="footer-item">
-          <i class="fa fa-bars"></i>
-          <span>Menu</span>
-        </div>
-      </div>
-    </footer>
+<footer>
+  <div class="footer">
+    <div class="footer-item">
+      <a href="index.html">
+        <i class="fa fa-home"></i>
+        <span>Home</span>
+      </a>
+    </div>
+    <div class="footer-item">
+      <a href="/discover">
+        <i class="fa-brands fa-cc-discover"></i>
+        <span>Discover</span>
+      </a>
+    </div>
+    <div class="footer-item">
+      <a href="/reels">
+        <i class="fa fa-video"></i>
+        <span>Reels</span>
+      </a>
+    </div>
+    <div class="footer-item">
+      <a href="/e-shop">
+        <i class="fa fa-shopping-cart"></i>
+        <span>E-Shop</span>
+      </a>
+    </div>
+    <div class="footer-item">
+      <a href="/menu">
+        <i class="fa fa-bars"></i>
+        <span>Menu</span>
+      </a>
+    </div>
+  </div>
+</footer>
+      
+    
     <div class="Button">
     <a href="post.html">
         <p class="post-btn">
@@ -186,7 +210,7 @@
       if (user) {
         if (!user.emailVerified) {
           alert('Please verify your email to access this page.');
-          window.location.href = "user.html";
+          window.location.href = "index.html";
         }
       } else {
         window.location.href = "user.html";
@@ -202,6 +226,6 @@
       });
     });
    </script>-->
-    <script src="script.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>
