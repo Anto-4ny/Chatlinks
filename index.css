@@ -4,20 +4,18 @@
   padding: 0;
   background-color: #ffffff;
 }
-
-/* General Header Styles */
 .header {
-    background-color: #f8f9fa; /* Light background for the header */
+    background-color: #f8f9fa;  
     border-bottom: 1px solid #ddd;
 }
 
 .header-top {
     display: flex;
-    justify-content: space-between; /* Space out the logo and icons */
+    justify-content: space-between; 
     align-items: center;
     padding: 10px;
-    background-color: #fff; /* White background for the header-top */
-    border-bottom: 1px solid #ddd; /* Adds separation between the header-top and the search bar */
+    background-color: #fff; 
+    border-bottom: 1px solid #ddd; 
 }
 
 .logo {
@@ -44,14 +42,14 @@
 
 .icons a {
     margin: 0 10px;
-    color: #333; /* Adjust color as needed */
+    color: #333; 
     text-decoration: none;
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .icons a:hover {
-    color: #007bff; /* Color on hover */
-    transform: scale(1.1); /* Slightly enlarge icon on hover */
+    color: #007bff; 
+    transform: scale(1.1); 
 }
 
 #logout-button {
@@ -65,24 +63,24 @@
 }
 
 #logout-button:hover {
-    background-color: #c82333; /* Darker red on hover */
+    background-color: #c82333; 
 }
 
 /* Search Bar Styles */
 .search-bar-container {
     width: 100%;
     padding: 10px;
-    background-color: #fff; /* Background color for the search bar */
+    background-color: #fff; 
 }
 
 .search-bar {
     width: 100%;
-    max-width: 1200px; /* Adjust max-width as needed */
+    max-width: 1200px; 
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     display: block;
-    margin: 0 auto; /* Center the search bar horizontally */
+    margin: 0 auto; 
 }
 
 /* Responsive Styles */
@@ -104,7 +102,7 @@
 
     .icons a {
         margin: 0;
-        font-size: 16px; /* Adjust icon size for smaller screens */
+        font-size: 16px;
     }
 
     #logout-button {
@@ -113,13 +111,13 @@
     }
 
     .search-bar {
-        max-width: 100%; /* Full width on smaller screens */
+        max-width: 100%; 
     }
 }
 
 @media (max-width: 480px) {
     .logo-text {
-        font-size: 20px; /* Smaller logo text size for very small screens */
+        font-size: 20px; 
     }
 
     .search-bar {
@@ -127,7 +125,7 @@
     }
 
     .icons a {
-        font-size: 14px; /* Further reduce icon size for very small screens */
+        font-size: 14px;
     }
 }
 
