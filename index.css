@@ -17,6 +17,7 @@
     align-items: center;
     padding: 10px;
     background-color: #fff; /* White background for the header-top */
+    border-bottom: 1px solid #ddd; /* Adds separation between the header-top and the search bar */
 }
 
 .logo {
@@ -72,7 +73,6 @@
     width: 100%;
     padding: 10px;
     background-color: #fff; /* Background color for the search bar */
-    border-top: 1px solid #ddd;
 }
 
 .search-bar {
@@ -97,7 +97,7 @@
     }
 
     .icons {
-        margin-top: 10px;
+        margin-bottom: 10px;
         width: 100%;
         justify-content: space-between;
     }
