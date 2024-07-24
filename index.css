@@ -5,33 +5,79 @@ body {
   background-color: #ffffff;
 }
 
+/* General header styling */
 .header {
   background-color: #ffffff;
   padding: 20px 5px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between; /* Space out the logo and icons */
   align-items: center;
-  gap: 10px;
+  position: relative; /* Allows positioning of the logo */
 }
+
+/* Logo styling */
+.header .logo {
+  font-size: 24px;
+  color: black;
+}
+
+/* Icons container styling */
 .header .icons {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 10px;
   font-size: 20px;
 }
 
+/* Icon styling */
 .header .icons i {
   color: gray;
   width: 20px;
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
 }
 
+/* Hover effect for icons */
+.header .icons i:hover {
+  color: black;
+}
+
+/* Search bar container styling */
+.search-container {
+  display: flex;
+  justify-content: center;
+  padding: 0 20px; /* Space on sides for smaller screens */
+}
+
+/* Search bar styling */
 .search-bar {
-  width: 60%;
+  width: 80%; /* Adjusted width for better responsiveness */
   padding: 10px;
   border-radius: 20px;
   border: 1px solid #ddd;
+  margin-top: 10px; /* Space between icons and search bar */
 }
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column; /* Stack header content vertically on smaller screens */
+    padding: 10px 5px;
+    align-items: flex-start; /* Align items to the start */
+  }
+
+  .header .icons {
+    font-size: 18px;
+  }
+
+  .header .logo {
+    font-size: 20px;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+}
+
 
 .container {
   /* max-width: 40vw;s */
