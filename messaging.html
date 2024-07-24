@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatlinks</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!--<script type="module" src="auth.js"></script>-->
+    <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js"></script>
+  </head>
+<body>
+        <div class="header">
+    <div class="header-top">
+        <a href="index.html" class="logo">
+            <img src="assets/logo.jpeg" alt="Chatlink Logo" class="logo-image"> <!-- Replace with your logo image path -->
+            <span class="logo-text">Chatlinks</span>
+        </a>
+        <div class="icons">
+            <a href="user.html">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            <a href="messaging.html">
+                <i class="fa-solid fa-message"></i>
+            </a>
+            <a href="link-to-notifications-page">
+                <i class="fa fa-bell"></i>
+            </a>
+            <button id="logout-button">Log Out</button>
+        </div>
+    </div>
+    <div class="search-bar-container">
+        <input type="text" placeholder="Search chatlink" class="search-bar">
+    </div>
+        </div>
+    <div id="app">
+        <div class="chat-container">
+            <div class="chat-header">
+                <button onclick="openSearch()">Search</button>
+                <button onclick="logout()">Logout</button>
+            </div>
+            <div id="messages" class="messages"></div>
+            <div class="message-input">
+                <input type="text" id="messageInput" placeholder="Type a message">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+
+        <!-- Search Overlay -->
+        <div class="overlay" id="searchOverlay">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search users...">
+                <button onclick="closeSearch()">Close</button>
+                <div id="searchResults" class="search-results"></div>
+            </div>
+        </div>
+
+        <!-- Chat Window -->
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <button onclick="closeChat()">Back</button>
+                <img id="profilePic" src="" alt="Profile Picture">
+                <h2 id="userName">User</h2>
+            </div>
+            <div id="chatMessages" class="messages"></div>
+            <div class="message-input">
+                <input type="text" id="chatMessageInput" placeholder="Type a message">
+                <button onclick="sendChatMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+<footer>
+  <div class="footer">
+    <div class="footer-item">
+      <a href="index.html">
+        <i class="fa fa-home"></i>
+        <span>Home</span>
+      </a>
+    </div>
+    <div class="footer-item">
+      <a href="/discover">
+        <i class="fa-brands fa-cc-discover"></i>
+        <span>Discover</span>
+      </a>
+    </div>
+    <div class="footer-item">
+      <a href="/reels">
+        <i class="fa fa-video"></i>
+        <span>Reels</span>
+      </a>
+    </div>
+    <div class="footer-item">
+      <a href="/e-shop">
+        <i class="fa fa-shopping-cart"></i>
+        <span>E-Shop</span>
+      </a>
+    </div>
+    <div class="footer-item">
+      <a href="/menu">
+        <i class="fa fa-bars"></i>
+        <span>Menu</span>
+      </a>
+    </div>
+  </div>
+</footer>
+    
+      <div class="Button">
+      <a href="post.html">
+          <p class="post-btn">
+              <i class="fa-regular fa-square-plus" style="
+                  font-size: 24px;
+                  color: white;
+                  text-align: center;
+                  margin-left: 15px;
+                  "></i>
+          </p>
+      </a>
+      </div>
+      <!-- footer ends here -->
+  <!--<script type="module">
+      import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+      const auth = getAuth();
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          if (!user.emailVerified) {
+            alert('Please verify your email to access this page.');
+            window.location.href = "index.html";
+          }
+        } else {
+          window.location.href = "user.html";
+        }
+      });
+  
+      const logoutButton = document.getElementById('logout-button');
+      logoutButton.addEventListener('click', () => {
+        signOut(auth).then(() => {
+          window.location.href = "user.html";
+        }).catch((error) => {
+          console.error(error);
+        });
+      });
+     </script>-->
+     <script src="index.js"></script>
+<script type="module" src="messaging.js" defer></script>
+</body>
+</html>
