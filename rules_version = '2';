@@ -1,0 +1,27 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Public collection: anyone can read, only authenticated users can write
+    match /public/{document=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // Users collection: users can read and write their own documents
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Admin-only access
+    match /admin/{document=**} {
+      allow read, write: if request.auth != null && request.auth.token.role == 'admin';
+    }
+
+    // Default rule: authenticated users can read and write any document
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
