@@ -1,5 +1,4 @@
 {
-
     "version": "0.2.0",
     "configurations": [
         {
@@ -24,8 +23,4 @@
             "webRoot": "${workspaceFolder}"
         }
     ]
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 64bfae8d465a920909517ce8c008a98de484f03f
