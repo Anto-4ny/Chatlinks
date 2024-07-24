@@ -5,77 +5,130 @@ body {
   background-color: #ffffff;
 }
 
-/* General header styling */
+/* General Header Styles */
 .header {
-  background-color: #ffffff;
-  padding: 20px 5px;
-  display: flex;
-  justify-content: space-between; /* Space out the logo and icons */
-  align-items: center;
-  position: relative; /* Allows positioning of the logo */
+    background-color: #f8f9fa; /* Light background for the header */
+    border-bottom: 1px solid #ddd;
 }
 
-/* Logo styling */
-.header .logo {
-  font-size: 24px;
-  color: black;
+.header-top {
+    display: flex;
+    justify-content: space-between; /* Space out the logo and icons */
+    align-items: center;
+    padding: 10px;
+    background-color: #fff; /* White background for the header-top */
 }
 
-/* Icons container styling */
-.header .icons {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 20px;
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
 }
 
-/* Icon styling */
-.header .icons i {
-  color: gray;
-  width: 20px;
-  transition: color 0.3s ease; /* Smooth transition for hover effect */
+.logo-image {
+    height: 40px; /* Adjust as needed */
+    margin-right: 10px;
 }
 
-/* Hover effect for icons */
-.header .icons i:hover {
-  color: black;
+.logo-text {
+    font-size: 24px; /* Adjust as needed */
+    font-weight: bold;
 }
 
-/* Search bar container styling */
-.search-container {
-  display: flex;
-  justify-content: center;
-  padding: 0 20px; /* Space on sides for smaller screens */
+.icons {
+    display: flex;
+    align-items: center;
 }
 
-/* Search bar styling */
-.search-bar {
-  width: 80%; /* Adjusted width for better responsiveness */
-  padding: 10px;
-  border-radius: 20px;
-  border: 1px solid #ddd;
-  margin-top: 10px; /* Space between icons and search bar */
+.icons a {
+    margin: 0 10px;
+    color: #333; /* Adjust color as needed */
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
-/* Responsive design adjustments */
-@media (max-width: 768px) {
-  .header {
-    flex-direction: column; /* Stack header content vertically on smaller screens */
-    padding: 10px 5px;
-    align-items: flex-start; /* Align items to the start */
-  }
+.icons a:hover {
+    color: #007bff; /* Color on hover */
+    transform: scale(1.1); /* Slightly enlarge icon on hover */
+}
 
-  .header .icons {
-    font-size: 18px;
-  }
+#logout-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
-  .header .logo {
-    font-size: 20px;
-  }
+#logout-button:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
 
-  .search-bar {
+/* Search Bar Styles */
+.search-bar-container {
     width: 100%;
-  }
+    padding: 10px;
+    background-color: #fff; /* Background color for the search bar */
+    border-top: 1px solid #ddd;
+}
+
+.search-bar {
+    width: 100%;
+    max-width: 1200px; /* Adjust max-width as needed */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: block;
+    margin: 0 auto; /* Center the search bar horizontally */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .icons {
+        margin-top: 10px;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .icons a {
+        margin: 0;
+        font-size: 16px; /* Adjust icon size for smaller screens */
+    }
+
+    #logout-button {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .search-bar {
+        max-width: 100%; /* Full width on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-text {
+        font-size: 20px; /* Smaller logo text size for very small screens */
+    }
+
+    .search-bar {
+        padding: 8px;
+    }
+
+    .icons a {
+        font-size: 14px; /* Further reduce icon size for very small screens */
+    }
 }
 
 
