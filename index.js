@@ -4,15 +4,18 @@ import {
   getAuth,
   connectAuthEmulator,
   signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   confirmPasswordReset,
   GoogleAuthProvider,
   OAuthProvider,
-  createUserWithEmailAndPassword,
+  signInWithPopup
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 import {
   getFirestore,
-  connectFirestoreEmulator
+  connectFirestoreEmulator,
+  collection,
+  addDoc
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
 // Your web app's Firebase configuration
@@ -29,7 +32,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
-connectAuthEmulator(auth, "http://localhost:8080");
+connectAuthEmulator(auth, "http://localhost:9099");
+
+const db = getFirestore(app);
+connectFirestoreEmulator(db, "localhost", 8080);
 
 // Google login and signup
 const googleLoginButton = document.getElementById('google-login');
@@ -83,27 +89,25 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     console.log('Signed in user:', userCredential.user);
-    // Redirect or update UI as needed
+    window.location.href = "messaging.html";  // Redirect to messaging page
   } catch (error) {
     console.error('Error signing in:', error);
   }
 });
 
-// Example for Firestore interaction
-const addUserToFirestore = async (user) => {
+document.getElementById('signup-form').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const email = document.getElementById('signup-email').value;
+  const password = document.getElementById('signup-password').value;
+
   try {
-    const docRef = await addDoc(collection(db, "users"), {
-      uid: user.uid,
-      email: user.email
-    });
-    console.log("Document written with ID: ", docRef.id);
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    console.log('Signed up user:', userCredential.user);
+    window.location.href = "messaging.html";  // Redirect to messaging page
   } catch (error) {
-    console.error("Error adding document: ", error);
+    console.error('Error signing up:', error);
   }
-};
-
-// Call addUserToFirestore function after user is successfully signed in or signed up
-
+});
 
 // Password reset form
 const forgotPasswordLink = document.getElementById('forgot-password');
@@ -189,58 +193,89 @@ backToLoginLink.addEventListener('click', (e) => {
 });
 
 // Post functionality
-const textarea = document.querySelector('#post-desc');
-const postBtn = document.querySelector('.post-btn');
-const postAudienceBtn = document.querySelector('.post-audience');
-const backBtn = document.querySelector('.arrow-left-icon');
-const createPostSection = document.querySelector('.create-post');
-const postAudienceSection = document.querySelector('.post-audience-section');
-const emojiBtn = document.querySelector('.emoji');
-const emojiPicker = document.querySelector('emoji-picker');
-const audienceOptions = document.querySelectorAll(".audience-option");
-const radioBtns = document.querySelectorAll(".audience-option-radio");
+document.addEventListener('DOMContentLoaded', () => {
+    const postButton = document.querySelector('.post-btn');
+    const postDesc = document.getElementById('post-desc');
+    const fileUpload = document.getElementById('file-upload');
+    const audienceOptions = document.getElementById('post-audience-options');
+    const audienceSelector = document.getElementById('post-audience');
+    const backgroundOptions = document.querySelectorAll('.background-option');
 
-document.body.style.overflowX = 'none';
+    const audienceOptionsMap = {
+        public: ['friends', 'friends-except', 'specific-friends', 'only-me'],
+        friends: ['friends-except', 'specific-friends', 'only-me'],
+        'friends-except': ['specific-friends', 'only-me'],
+        'specific-friends': ['only-me'],
+        'only-me': []
+    };
 
-textarea.addEventListener("input", () => {
-  if (textarea.value != '')
-    postBtn.disabled = false;
-  else
-    postBtn.disabled = true;
-});
-
-emojiBtn.addEventListener("click", () => {
-  emojiPicker.style.display = emojiPicker.style.display === 'none' ? 'block' : 'none';
-});
-
-emojiPicker.addEventListener('emoji-click', e => {
-  textarea.value += e.detail.unicode;
-});
-
-postAudienceBtn.addEventListener('click', () => {
-  document.querySelector('.wrapper').classList.add('wrapper-active');
-  postAudienceSection.style.display = 'block';
-  createPostSection.style.display = 'none';
-});
-
-audienceOptions.forEach(option => {
-  option.addEventListener('click', e => {
-    if (!option.classList.contains('active')) {
-      option.classList.add('active');
-      e.currentTarget.children[1].children[0].children[0].checked = true;
-    }
-    audienceOptions.forEach((otherOption, i) => {
-      if (e.currentTarget !== otherOption) {
-        otherOption.classList.remove('active');
-        radioBtns[i].checked = false;
-      }
+    // Toggle Audience Options
+    audienceSelector.addEventListener('click', () => {
+        audienceOptions.style.display = audienceOptions.style.display === 'block' ? 'none' : 'block';
     });
-  });
-});
 
-backBtn.addEventListener('click', () => {
-  document.querySelector('.wrapper').classList.remove('wrapper-active');
-  postAudienceSection.style.display = 'none';
-  createPostSection.style.display = 'block';
+    audienceOptions.addEventListener('click', event => {
+        const option = event.target.closest('.audience-option');
+        if (option) {
+            const selectedOption = option.getAttribute('data-option');
+            const optionsToShow = audienceOptionsMap[selectedOption] || [];
+            
+            document.querySelectorAll('.audience-option').forEach(el => {
+                if (optionsToShow.includes(el.getAttribute('data-option')) || selectedOption === 'public') {
+                    el.style.display = 'flex';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+
+            audienceOptions.querySelectorAll('input').forEach(input => {
+                if (input.closest('.audience-option').getAttribute('data-option') === selectedOption) {
+                    input.checked = true;
+                } else {
+                    input.checked = false;
+                }
+            });
+
+            audienceOptions.style.display = 'none';
+        }
+    });
+
+    // Handle Background Option Selection
+    backgroundOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            backgroundOptions.forEach(bg => bg.classList.remove('selected'));
+            option.classList.add('selected');
+            postDesc.style.backgroundImage = `url('${option.style.backgroundImage.slice(5, -2)}')`;
+        });
+    });
+
+    // Enable the Post button when there is content
+    postDesc.addEventListener('input', () => {
+        postButton.disabled = !postDesc.value.trim();
+        postButton.classList.toggle('enabled', postDesc.value.trim());
+    });
+
+    // Handle Post Button Click
+    postButton.addEventListener('click', async () => {
+        const description = postDesc.value.trim();
+        const files = fileUpload.files;
+
+        if (description || files.length > 0) {
+            try {
+                await addDoc(collection(db, 'posts'), {
+                    description,
+                    timestamp: new Date(),
+                    userId: auth.currentUser.uid,
+                    // Additional fields for handling files and selected background would go here
+                });
+                alert('Post created successfully');
+                postDesc.value = '';
+                fileUpload.value = '';
+                postButton.disabled = true;
+                postButton.classList.remove('enabled');
+            } catch (e) {
+                console.error('Error adding document: ', e);
+            }
+        }
+    });
 });
-              
