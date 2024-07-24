@@ -9,11 +9,13 @@ import {
   confirmPasswordReset,
   GoogleAuthProvider,
   OAuthProvider,
-  createUserWithEmailAndPassword,
+  signInWithPopup
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 import {
   getFirestore,
-  connectFirestoreEmulator
+  connectFirestoreEmulator,
+  collection,
+  addDoc
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
 // Your web app's Firebase configuration
@@ -87,27 +89,25 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     console.log('Signed in user:', userCredential.user);
-    // Redirect or update UI as needed
+    window.location.href = "messaging.html";  // Redirect to messaging page
   } catch (error) {
     console.error('Error signing in:', error);
   }
 });
 
-// Example for Firestore interaction
-const addUserToFirestore = async (user) => {
+document.getElementById('signup-form').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const email = document.getElementById('signup-email').value;
+  const password = document.getElementById('signup-password').value;
+
   try {
-    const docRef = await addDoc(collection(db, "users"), {
-      uid: user.uid,
-      email: user.email
-    });
-    console.log("Document written with ID: ", docRef.id);
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    console.log('Signed up user:', userCredential.user);
+    window.location.href = "messaging.html";  // Redirect to messaging page
   } catch (error) {
-    console.error("Error adding document: ", error);
+    console.error('Error signing up:', error);
   }
-};
-
-// Call addUserToFirestore function after user is successfully signed in or signed up
-
+});
 
 // Password reset form
 const forgotPasswordLink = document.getElementById('forgot-password');
@@ -192,52 +192,7 @@ backToLoginLink.addEventListener('click', (e) => {
   loginFormContainer.style.display = 'block';
 });
 
-//login and sign up
-document.getElementById('login-form').addEventListener('submit', async (event) => {
-  event.preventDefault();
-  const email = document.getElementById('login-email').value;
-  const password = document.getElementById('login-password').value;
-
-  try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    console.log('Signed in user:', userCredential.user);
-    window.location.href = "messaging.html";  // Redirect to messaging page
-  } catch (error) {
-    console.error('Error signing in:', error);
-  }
-});
-
-document.getElementById('signup-form').addEventListener('submit', async (event) => {
-  event.preventDefault();
-  const email = document.getElementById('signup-email').value;
-  const password = document.getElementById('signup-password').value;
-
-  try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    console.log('Signed up user:', userCredential.user);
-    window.location.href = "messaging.html";  // Redirect to messaging page
-  } catch (error) {
-    console.error('Error signing up:', error);
-  }
-});
-
-
-// index.js
-
-import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js';
-import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js';
-
-// Initialize Firebase
-const db = getFirestore();
-const auth = getAuth();
-
-// Monitor Authentication State
-onAuthStateChanged(auth, user => {
-    if (!user) {
-        window.location.href = "user.html";
-    }
-});
-
+// Post functionality
 document.addEventListener('DOMContentLoaded', () => {
     const postButton = document.querySelector('.post-btn');
     const postDesc = document.getElementById('post-desc');
@@ -324,4 +279,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-              
