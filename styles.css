@@ -1,65 +1,131 @@
+/* General Styling */
 body, html {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
 }
 
-.navbar {
+nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #3b5998;
-    padding: 10px 20px;
+    background-color: #4267B2;
+    padding: 0 20px;
+    height: 60px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo Section */
+.left-section, .center-section, .right-section {
+    display: flex;
+    align-items: center;
 }
 
 .logo img {
     height: 40px;
 }
 
+/* Search Bar */
 .search-bar input {
     width: 300px;
     padding: 10px;
     border-radius: 20px;
     border: none;
     outline: none;
+    margin-left: 20px;
+    background-color: #f1f2f5;
+    font-size: 14px;
 }
 
-.menu-icons a, .profile-section a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: white;
+.search-bar input::placeholder {
+    color: #606770;
 }
 
-.menu-icons a img, .profile-section a img {
-    height: 24px;
+/* Center Section (Navigation Icons) */
+.center-section a {
+    margin: 0 15px;
 }
 
-.profile-section {
+.center-section a img {
+    height: 28px;
+    transition: opacity 0.3s;
+}
+
+.center-section a:hover img {
+    opacity: 0.7;
+}
+
+/* Right Section (Profile and Icons) */
+.profile {
     display: flex;
     align-items: center;
+    margin-right: 20px;
 }
 
-.profile-link {
-    display: flex;
-    align-items: center;
-}
-
-.profile-link img {
+.profile img {
     height: 32px;
     border-radius: 50%;
     margin-right: 10px;
 }
 
-.profile-link span {
+.profile span {
+    color: white;
+    font-weight: bold;
+}
+
+.icons a {
+    margin: 0 10px;
     color: white;
 }
 
-.menu-icons a:hover, .profile-section a:hover {
-    opacity: 0.8;
+.icons a img {
+    height: 24px;
+    transition: opacity 0.3s;
+}
+
+.icons a:hover img {
+    opacity: 0.7;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .search-bar input {
+        width: 200px;
+    }
 }
 
 @media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .left-section, .center-section, .right-section {
+        width: 100%;
+        justify-content: space-between;
+        padding: 5px 0;
+    }
+
+    .center-section {
+        justify-content: center;
+    }
+
+    .profile {
+        justify-content: center;
+        margin: 10px 0;
+    }
+
     .search-bar input {
-        width: 200px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .center-section a, .right-section .icons a {
+        margin: 0 5px;
+    }
+
+    .profile span {
+        display: none;
     }
 }
