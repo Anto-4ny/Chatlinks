@@ -1,0 +1,65 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #3b5998;
+    padding: 10px 20px;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.search-bar input {
+    width: 300px;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+}
+
+.menu-icons a, .profile-section a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: white;
+}
+
+.menu-icons a img, .profile-section a img {
+    height: 24px;
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+}
+
+.profile-link {
+    display: flex;
+    align-items: center;
+}
+
+.profile-link img {
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.profile-link span {
+    color: white;
+}
+
+.menu-icons a:hover, .profile-section a:hover {
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .search-bar input {
+        width: 200px;
+    }
+}
