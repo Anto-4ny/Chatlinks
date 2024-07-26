@@ -27,7 +27,7 @@ nav {
 }
 
 .logo img {
-    height: 40px;
+    height: 50px;
 }
 
 /* Search Bar */
@@ -54,8 +54,8 @@ nav {
 }
 
 .center-section a img {
-    height: 28px;
-    width: 28px; /* Ensure images are uniform */
+    height: 8px;
+    width: 8px; /* Ensure images are uniform */
     transition: opacity 0.3s;
     border-radius: 50%; /* Optional: gives a rounded appearance */
 }
@@ -72,8 +72,8 @@ nav {
 }
 
 .profile img {
-    height: 32px;
-    width: 32px; /* Ensure images are uniform */
+    height: 12px;
+    width: 12px; /* Ensure images are uniform */
     border-radius: 50%;
     margin-right: 10px;
 }
@@ -91,8 +91,8 @@ nav {
 }
 
 .icons a img {
-    height: 24px;
-    width: 24px; /* Ensure images are uniform */
+    height: 8px;
+    width: 8px; /* Ensure images are uniform */
     transition: opacity 0.3s;
 }
 
