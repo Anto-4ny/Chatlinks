@@ -9,10 +9,11 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #4267B2;
+    background-color: white;
     padding: 0 20px;
     height: 60px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: black;
 }
 
 /* Logo Section */
