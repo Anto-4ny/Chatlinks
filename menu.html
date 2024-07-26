@@ -6,6 +6,7 @@
     <title>Chatlinks Menu</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="index.css">
+    <!--<script type="module" src="auth.js"></script>-->
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js"></script>
@@ -14,7 +15,7 @@
 <body>
     <div class="navbar">
         <div class="logo">
-            <img src="logo.png" alt="Logo">
+            <img src="assets/logo.jpeg" alt="Logo">
         </div>
         <div class="search-bar">
             <input type="text" placeholder="Search Chatlinks">
@@ -72,6 +73,29 @@
     </div>
   </div>
 </footer>
+    <!--<script type="module">
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        if (!user.emailVerified) {
+          alert('Please verify your email to access this page.');
+          window.location.href = "index.html";
+        }
+      } else {
+        window.location.href = "user.html";
+      }
+    });
+
+    const logoutButton = document.getElementById('logout-button');
+    logoutButton.addEventListener('click', () => {
+      signOut(auth).then(() => {
+        window.location.href = "user.html";
+      }).catch((error) => {
+        console.error(error);
+      });
+    });
+   </script>-->
       
 </body>
 </html>
