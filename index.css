@@ -827,7 +827,7 @@ textarea {
 }
 
 /* Post Button */
-.post-btn {
+.post-button {
     background: #007bff;
     color: #fff;
     border: none;
@@ -839,7 +839,7 @@ textarea {
     margin-top: 10px;
 }
 
-.post-btn:disabled {
+.post-button:disabled {
     background: #ddd;
     cursor: not-allowed;
 }
@@ -970,7 +970,7 @@ body {
     border-radius: 5px; /* Match the textarea with the background */
 }
 
-.post-btn {
+.post-button {
     background-color: blue;
     color: white;
     padding: 10px;
@@ -979,7 +979,7 @@ body {
     cursor: pointer;
 }
 
-.post-btn.enabled {
+.post-button.enabled {
     background-color: #007bff;
 }
 
@@ -1127,7 +1127,7 @@ body {
         height: 50px;
     }
     
-    .post-btn {
+    .post-button {
         padding: 6px;
         font-size: 12px;
     }
